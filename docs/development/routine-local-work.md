@@ -1,5 +1,10 @@
 # Standing authority for bounded local work
 
+The activated [reviewer-provider enrollment](reviewer-provider-enrollment.md)
+adds explicit per-profile providers and reasoning budgets through a separately
+approved v4 amendment. Query current activation; this v3 history does not itself
+authorize an alternate service or expand a historical grant.
+
 Activated through the existing operator-control owner after the actual
 `+activate` decision and protected pass on 2026-11-05. The activation version is
 `26b93f4ae7ca8dcfbf228f62dd0ffa4ea94057cf953e529e2f7db61e27f46978`;

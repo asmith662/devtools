@@ -101,6 +101,18 @@ invalid UTF-8. Non-success responses retain `LlamaCppHttpError.status`, bounded
 replacement-decoded diagnostic text and the decoding cause when applicable.
 These error categories do not prove that the provider did not execute.
 
+The llama.cpp HTTP reader accepts HTTP/1.0 and HTTP/1.1 status lines with an
+exact three-digit code and a space before the optional reason phrase. Multiword
+or empty reason text does not change status classification; invalid protocol,
+code or control octets refuse. Complete non-success responses remain server
+failures, including native Tool-parser error 500, never successful ModelResponses.
+Header and chunk-line reader limits remain enforced. Content-Length, chunked
+and EOF-delimited bodies all have an 8 MiB total limit; oversized declared bodies
+refuse before allocation. Provider diagnostic extraction retains at most its
+existing 1 KiB source prefix, including replacement-decoded invalid bytes.
+This framing support adds no model streaming, automatic retry, Tool execution or
+repair of malformed model output. Callers still own raw failure evidence capture.
+
 The configurable llama.cpp implementation is under `providers/`; it communicates
 with an already-running model endpoint. Endpoint lifecycle is separately owned
 by `devtools.models.serving`.

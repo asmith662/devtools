@@ -1,0 +1,319 @@
+{
+  "trials": [
+    {
+      "trial": "qwen-high-off-C01-r1",
+      "case": "C01",
+      "variant": "qwen-high-off",
+      "rep": 1,
+      "proposal": {
+        "subject_sha256": "68eed73fe7359a3fca5566b8181d4db277fd6fe9815e4f2361e256080cb6b1a5",
+        "candidate_sha256": "ea9619b09ebaca244b358179fecc7c952be37e07edac66ba5171f19b3af3b119",
+        "conclusion": {
+          "assessed_obligations": [
+            "objective",
+            "current-owner"
+          ],
+          "disposition": "reject",
+          "evidence": [
+            "public-C01",
+            "diff",
+            "candidate",
+            "baseline",
+            "task"
+          ],
+          "findings": [
+            {
+              "evidence": [
+                "public-C01",
+                "candidate",
+                "baseline"
+              ],
+              "kind": "observed",
+              "message": "Public check failed: input '# ##' yields title '##' where expected empty title ''. The candidate's new pattern keeps a leading-only hash run in the text group, so a heading whose entire title is a separated closing hash run is no longer stripped.",
+              "severity": "blocking"
+            },
+            {
+              "evidence": [
+                "diff",
+                "candidate"
+              ],
+              "kind": "inference",
+              "message": "The fix only handles the terminal-separated hash run via (?:(?<=[ \\t])...), leaving a hash-only title unstripped because the regex has no way to strip a leading hash run. The baseline's '[ \\t]*#*' stripped it. This is the root cause of the observed '# ##' failure and may affect other edge inputs (e.g., '# ####', '# ### ##') that the fixed public set does not cover.",
+              "severity": "blocking"
+            },
+            {
+              "evidence": [
+                "public-C01",
+                "diff",
+                "candidate"
+              ],
+              "kind": "observed",
+              "message": "Three of four public cases passed ('# C#', '# C# #', '# Title #'), confirming the attached-hash literal behavior and the separated-closer removal for non-empty titles work. Only the empty-title edge case fails. This is a partial, not total, failure of the contract.",
+              "severity": "advisory"
+            }
+          ],
+          "outstanding": [
+            "Behavior for hash-only title with trailing whitespace (e.g., '# ## ') and multiple hash runs (e.g., '# ## ###') is not covered by the fixed public inputs; not verified.",
+            "No independent verification that fence exclusion, section boundaries, and find_heading/find_section semantics remain unchanged, though the diff shows those paths are untouched.",
+            "Formal acceptance/custody records are unavailable in this calibration; production admission cannot be assessed here."
+          ],
+          "requests": [
+            "Add a regression test for a hash-only title (e.g., '# ##' expected title ''), and verify the empty-title and trailing-whitespace edge cases.",
+            "Re-run the public check on a corrected candidate before re-review."
+          ],
+          "summary": "The candidate changes only _ATX_HEADING_PATTERN in MarkdownFile (src/devtools/resources/filesystem/models/markdown/file.py), which satisfies the 'only the existing authorized model file may change' requirement. The new pattern correctly preserves attached literal hashes ('# C#' -> 'C#') and strips separated terminal closing hashes for non-empty titles ('# C# #' -> 'C#'), fixing the primary corruption reported in the task. However, the public check fails on the '# ##' case: expected empty title, actual '##'. The candidate's pattern does not strip a hash-only title, regressing the baseline behavior (baseline '[ \\t]*#*' stripped it). Since the task explicitly requires preserving empty titles and the current owner's title contract, this is a blocking defect. Disposition: reject. Note: this is a factual code recommendation against the public contract only; formal acceptance/custody records are unavailable in this calibration and are not being asserted here."
+        }
+      },
+      "terminal": "proposal returned",
+      "received_response_from": ".local\\reviewer-model-comparison\\qualified-qwen\\qwen-high-off-C01-r1\\1\\normalized.json",
+      "reads": 1,
+      "admission": "ValueError: Review cites unavailable evidence"
+    },
+    {
+      "trial": "qwen-high-on-C02-r1",
+      "case": "C02",
+      "variant": "qwen-high-on",
+      "rep": 1,
+      "proposal": null,
+      "terminal": "output-limit-censored",
+      "received_response_from": ".local\\reviewer-model-comparison\\qualified-qwen\\qwen-high-on-C02-r1\\1\\normalized.json"
+    },
+    {
+      "trial": "qwen-high-off-C02-r1",
+      "case": "C02",
+      "variant": "qwen-high-off",
+      "rep": 1,
+      "proposal": {
+        "candidate_sha256": "b2d08c895747382345f9f276dda3062a74a6157aab99f7e919459aee2772f92f",
+        "subject_sha256": "a5d260d75128cf461f9af81bfe57bac6a1808297953182d07a1ede4d8ca89a1a",
+        "conclusion": {
+          "assessed_obligations": [
+            "task-objective: Repair attached literal hash suffix corruption in MarkdownFile ATX heading titles only; only a terminal hash run separated from the title by space/tab is a closing marker; attached hashes stay literal (incl. with trailing whitespace or a separate closing run); preserve trimming, separated closer, empty titles, levels, line numbers, fence exclusion, hierarchy, lookup, and exact original content; narrow raw-text helper, no new grammar; only the authorized model file may change.",
+            "current-owner: Acquire complete current Markdown model owner and preserve its title, fence, section and lookup contracts while repairing only attached hash suffix handling."
+          ],
+          "disposition": "accept",
+          "evidence": [
+            "task",
+            "baseline",
+            "candidate",
+            "diff",
+            "public-checks"
+          ],
+          "findings": [
+            {
+              "evidence": [
+                "public-checks"
+              ],
+              "kind": "observed",
+              "message": "Bounded public check public-C02 passed (exit 0) on all four fixed inputs: '# C#'->'C#', '# C# #'->'C#', '# Title #'->'Title', '# ##'->''. Confirms attached hashes are literal and separated terminal closing hashes (including empty heading) are removed.",
+              "severity": "advisory"
+            },
+            {
+              "evidence": [
+                "candidate",
+                "diff",
+                "task"
+              ],
+              "kind": "inference",
+              "message": "The posed defect (separated closing run after an attached hash) is NOT mishandled. Static trace of the candidate regex shows '# C# #' yields text 'C# ' (strip 'C#'), '# A# #' yields 'A#', and '# A # B #' yields 'A # B' - only the terminal, space/tab-separated hash run is stripped while attached hashes remain literal, matching the task contract.",
+              "severity": "advisory"
+            },
+            {
+              "evidence": [
+                "candidate",
+                "baseline",
+                "diff"
+              ],
+              "kind": "inference",
+              "message": "Diff is minimal and confined to the authorized model file: only _ATX_HEADING_PATTERN and an explanatory comment changed. Marker group (#{1,6}), fence pattern, headings/sections, find_heading/find_section, _build_section, line numbers, lookup semantics, and exact original content are all unchanged; no new indentation/opening grammar or full CommonMark behavior introduced.",
+              "severity": "advisory"
+            }
+          ],
+          "outstanding": [
+            "Bounded public check covers only its four fixed inputs; full CommonMark conformance is out of scope by design (narrow raw-text helper) and not required. Formal acceptance and custody references are unavailable; this disposition rests on the authenticated public observation plus static analysis of the candidate.",
+            "The lookbehind '(?<=[ \\t])' is fixed-width and Python-re safe; no catastrophic-backtracking concern was found, but performance on very long pathological heading lines was not benchmarked (not required by the task)."
+          ],
+          "requests": [
+            "None required for this bounded review; formal acceptance remains with the trusted host."
+          ],
+          "summary": "The candidate repairs the attached-hash-suffix corruption by replacing the baseline trailing '[ \\t]*#*' with an optional, space/tab-lookbehind-bounded closer group '(?:(?<=[ \\t])#+)?'. This makes only a terminal hash run separated from the title by a space or tab a closing marker, while attached hashes (e.g. '# C#') remain literal, including when followed by trailing whitespace or a separate closing run ('# C# #' -> 'C#'). I traced the lazy regex against the key cases and found correct behavior: '# C#'->'C#', '# C# #'->'C#', '# A# #'->'A#', '# A # B #'->'A # B', '# Title #'->'Title', '# ##'->'' (empty title preserved). The diff is confined to the single authorized model file; levels, line numbers, fence exclusion, section/hierarchy boundaries, lookup semantics, trimming, and exact original content are all preserved, and no new grammar is introduced. The authenticated bounded public check public-C02 passed on all four fixed inputs. The alleged defect (separated closing run after an attached hash) was investigated and found to be handled correctly, not a defect."
+        }
+      },
+      "terminal": "proposal returned",
+      "received_response_from": ".local\\reviewer-model-comparison\\qualified-qwen\\qwen-high-off-C02-r1\\1\\normalized.json",
+      "admission": "ValueError: Review obligation references are invalid"
+    },
+    {
+      "trial": "qwen-high-on-C01-r1",
+      "case": "C01",
+      "variant": "qwen-high-on",
+      "rep": 1,
+      "proposal": {
+        "subject_sha256": "1a56c3461a9445c372899d33db7d493d46f1cc69715aab6651dd8982b27d0614",
+        "candidate_sha256": "ea9619b09ebaca244b358179fecc7c952be37e07edac66ba5171f19b3af3b119",
+        "conclusion": {
+          "assessed_obligations": [
+            "objective: Repair attached literal hash suffix corruption in MarkdownFile heading titles only, preserving current trimming, separated closer behavior, empty titles, levels, source line numbers, fence exclusion, hierarchy boundaries, lookup semantics and exact original content. Assessed: attached-hash corruption is repaired for the observed fixed inputs ('# C#' -> 'C#', '# C# #' -> 'C#') and separated closers after a non-empty title are still removed ('# Title #' -> 'Title'); however the preservation requirement is violated for empty titles ('# ##' now yields '##' instead of the baseline ''), so the objective is not fully met.",
+            "current-owner (src/devtools/resources/filesystem/models/markdown/file.py, criterion current-whole-resource-v1): Assessed: the change is confined to the single authorized model file and to one line (_ATX_HEADING_PATTERN); fence pattern, parse loop, section building and lookup code are unchanged, preserving fence/section/lookup contracts. The title contract is not fully preserved (empty-title separated-closer behavior regressed, confirmed by public-C01 failure), so the obligation is not met."
+          ],
+          "disposition": "reject",
+          "evidence": [
+            "task",
+            "baseline",
+            "candidate",
+            "diff",
+            "public-checks"
+          ],
+          "findings": [
+            {
+              "evidence": [
+                "public-checks"
+              ],
+              "kind": "observed",
+              "message": "Authenticated public check public-C01 failed with exit_code 1: for input '# ##' the expected title is '' but the observed title is '##' (actual vs expected mismatch in the fixed public case set). The other three fixed cases passed: '# C#' -> 'C#', '# C# #' -> 'C#', '# Title #' -> 'Title'. A known public mismatch is a contract failure.",
+              "severity": "blocking"
+            },
+            {
+              "evidence": [
+                "candidate",
+                "baseline"
+              ],
+              "kind": "inference",
+              "message": "Root cause of the observed failure: the candidate closer alternative '(?:(?<=\\S)[ \\t]+#*|[ \\t]*)' only fires when a non-space character immediately precedes the separator. For a terminal hash run following an empty title (e.g. '# ##', '# #', '#  ##') the character before the separator is the space after the marker, the lookbehind fails, and the hashes are captured as literal title text instead of being removed as a separated closer. This regresses the baseline behavior, which yielded '' for '# ##'.",
+              "severity": "blocking"
+            },
+            {
+              "evidence": [
+                "diff",
+                "baseline",
+                "candidate"
+              ],
+              "kind": "observed",
+              "message": "Scope confirmation: the diff is a single-line change to _ATX_HEADING_PATTERN inside MarkdownFile; _FENCE_PATTERN, _parse_headings, _build_section, find_heading and find_section are byte-identical to the baseline, so fence exclusion, levels, line numbers, hierarchy boundaries and lookup semantics are untouched by the change.",
+              "severity": "advisory"
+            }
+          ],
+          "outstanding": [
+            "Only the four fixed public inputs were executed; same-class inputs ('# #', '#  ##', tab-separator variants) and multi-line documents with fences were not executed against the candidate.",
+            "Private acceptance implementation and formal acceptance/custody references are unavailable; correctness beyond the fixed public check could not be independently verified."
+          ],
+          "requests": [
+            "Provide a revised candidate in which a separated terminal run of hashes is still removed when the preceding title is empty (restoring baseline '' for '# ##' and same-class inputs), while keeping attached hashes literal including when followed by trailing whitespace or a separate closing run ('# C#' -> 'C#', '# C# #' -> 'C#'); then re-run public-C01 until it passes."
+          ],
+          "summary": "The candidate changes exactly one line in the authorized model file: MarkdownFile._ATX_HEADING_PATTERN (single-hunk diff; fence pattern, parse loop, section construction and both lookup methods are unchanged). The task's core repair is achieved for the observed fixed cases: attached hashes remain literal title text ('# C#' -> 'C#'), including when followed by a separate closing run ('# C# #' -> 'C#'), and a separated closing run after a non-empty title is still removed ('# Title #' -> 'Title'). However, the authenticated public check public-C01 failed (exit_code 1): for input '# ##' the expected title is '' (empty title, with the separated terminal hash run treated as a closer, matching the baseline) but the candidate observed '##'. Mechanism (inference): the closer alternative '(?:(?<=\\S)[ \\t]+#*|[ \\t]*)' requires a non-space character immediately before the separator, so a terminal hash run following an empty title cannot be recognized as a closer and is instead captured into the text group; the same class affects '# #' and '#  ##'. This regresses the baseline's trimming/separated-closer/empty-title behavior, violating the task's preservation requirement and the current-owner title-contract obligation. Disposition: reject."
+        }
+      },
+      "terminal": "proposal returned",
+      "received_response_from": ".local\\reviewer-model-comparison\\qualified-qwen\\qwen-high-on-C01-r1\\1\\normalized.json",
+      "admission": "ValueError: Review obligation references are invalid"
+    }
+  ],
+  "rows": [
+    {
+      "trial": "qwen-high-off-C01-r1",
+      "turn": 2,
+      "seconds": 54.655962,
+      "input_tokens": 10243,
+      "usage": {
+        "completion_tokens": 856,
+        "prompt_tokens": 10243,
+        "total_tokens": 11099,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "finish_reason": "tool_calls",
+      "consumed": true,
+      "error": null
+    }
+  ],
+  "original_rows": [
+    {
+      "trial": "qwen-high-off-C01-r1",
+      "turn": 1,
+      "seconds": 17.990019,
+      "input_tokens": 8383,
+      "usage": {
+        "completion_tokens": 61,
+        "prompt_tokens": 8383,
+        "total_tokens": 8444,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "finish_reason": "tool_calls",
+      "consumed": true,
+      "error": null,
+      "read_completed": false
+    },
+    {
+      "trial": "qwen-high-on-C02-r1",
+      "turn": 1,
+      "seconds": 374.33629,
+      "input_tokens": 8484,
+      "usage": {
+        "completion_tokens": 8192,
+        "prompt_tokens": 8484,
+        "total_tokens": 16676,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "finish_reason": "length",
+      "consumed": true,
+      "error": null,
+      "read_completed": false
+    },
+    {
+      "trial": "qwen-high-off-C02-r1",
+      "turn": 1,
+      "seconds": 270.406609,
+      "input_tokens": 8450,
+      "usage": {
+        "completion_tokens": 6439,
+        "prompt_tokens": 8450,
+        "total_tokens": 14889,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "finish_reason": "tool_calls",
+      "consumed": true,
+      "error": null,
+      "read_completed": false
+    },
+    {
+      "trial": "qwen-high-on-C01-r1",
+      "turn": 1,
+      "seconds": 327.972617,
+      "input_tokens": 8422,
+      "usage": {
+        "completion_tokens": 7857,
+        "prompt_tokens": 8422,
+        "total_tokens": 16279,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "finish_reason": "tool_calls",
+      "consumed": true,
+      "error": null,
+      "read_completed": false
+    }
+  ],
+  "same_grant": "routine-v1:4fe32fc6bd33762ce7b166fc8031e16a7bcd7584c1d9c65676a280983e0b78a9:5195fea71c574a73c9c9258e256aff31afff98a7780c1a9cf1172f8d17e3c854",
+  "total_generations": 5,
+  "replayed_generations": 0,
+  "provider_after": {
+    "configuration": {
+      "endpoint": "http://127.0.0.1:8080",
+      "model": "qwen38-local",
+      "image": "7625abb46c6bb8357e214f949b409a152c0944228e5a653fbab112f98ad2de7e",
+      "artifact_sha256": "40fac4050e940397dbf13087afd50f4734a11805bf9d65ef8ddd7483470e6199",
+      "context_tokens": 65536
+    },
+    "healthy": true,
+    "idle": true
+  },
+  "operator_approvals_for_run": 0
+}

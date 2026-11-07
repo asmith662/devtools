@@ -1,0 +1,157 @@
+{
+  "frozen_sha256": "65184dc248a9222ade1e9dc81116f0c7b7a1c060abab884c883ef6ade71305b4",
+  "policy_version": "4fe32fc6bd33762ce7b166fc8031e16a7bcd7584c1d9c65676a280983e0b78a9",
+  "grant": "routine-v1:4fe32fc6bd33762ce7b166fc8031e16a7bcd7584c1d9c65676a280983e0b78a9:793ce0ad2c40b55dd428d9d8ed0f1ee8c0c74134f3c53bde77e8ce4b111ea7f4",
+  "trials": [
+    {
+      "trial": "gpt-oss-native-C02-r1",
+      "case": "C02",
+      "variant": "gpt-oss-native",
+      "rep": 1,
+      "proposal": {
+        "candidate_sha256": "b2d08c895747382345f9f276dda3062a74a6157aab99f7e919459aee2772f92f",
+        "conclusion": {
+          "assessed_obligations": [
+            "current-owner"
+          ],
+          "disposition": "accept",
+          "evidence": [
+            "public-C02"
+          ],
+          "findings": [],
+          "outstanding": [],
+          "requests": [],
+          "summary": "The candidate implementation of MarkdownFile correctly preserves attached hash suffixes while treating separated closing hash runs as terminators. The public test suite for heading title extraction passes, confirming compliance with the public contract. No evidence of contract violation or regression is observed. Remaining uncertainty is limited to potential edge cases not covered by the public tests, but the regex logic aligns with the specification and is unlikely to produce hidden failures."
+        },
+        "subject_sha256": "0ad4701aa9cc5a82ed09c0e09bc68b3f4e5890986c3570f8a5f787f4b3c2328a"
+      },
+      "terminal": "proposal returned",
+      "admission": "ValueError: Review cites unavailable evidence"
+    },
+    {
+      "trial": "gpt-oss-native-C01-r1",
+      "case": "C01",
+      "variant": "gpt-oss-native",
+      "rep": 1,
+      "proposal": null,
+      "terminal": "known protocol failure",
+      "error": {
+        "type": "ValueError",
+        "message": "No supported native Tool or proposal"
+      }
+    },
+    {
+      "trial": "gpt-oss-native-C01-r2",
+      "case": "C01",
+      "variant": "gpt-oss-native",
+      "rep": 2,
+      "proposal": null,
+      "terminal": "unknown-or-failed",
+      "error": {
+        "type": "LlamaCppResponseError",
+        "message": "llama.cpp response had an invalid HTTP status line."
+      }
+    }
+  ],
+  "rows": [
+    {
+      "trial": "gpt-oss-native-C02-r1",
+      "turn": 1,
+      "seconds": 25.536784,
+      "input_tokens": 6733,
+      "usage": {
+        "completion_tokens": 2354,
+        "prompt_tokens": 6733,
+        "total_tokens": 9087,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "finish_reason": "tool_calls",
+      "consumed": true,
+      "error": null,
+      "read_completed": true
+    },
+    {
+      "trial": "gpt-oss-native-C02-r1",
+      "turn": 2,
+      "seconds": 9.029166,
+      "input_tokens": 10867,
+      "usage": {
+        "completion_tokens": 564,
+        "prompt_tokens": 10867,
+        "total_tokens": 11431,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "finish_reason": "tool_calls",
+      "consumed": true,
+      "error": null,
+      "read_completed": false
+    },
+    {
+      "trial": "gpt-oss-native-C01-r1",
+      "turn": 1,
+      "seconds": 20.267156,
+      "input_tokens": 6713,
+      "usage": {
+        "completion_tokens": 1843,
+        "prompt_tokens": 6713,
+        "total_tokens": 8556,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "finish_reason": "tool_calls",
+      "consumed": true,
+      "error": null,
+      "read_completed": true
+    },
+    {
+      "trial": "gpt-oss-native-C01-r1",
+      "turn": 2,
+      "seconds": 8.028338,
+      "input_tokens": 10329,
+      "usage": {
+        "completion_tokens": 425,
+        "prompt_tokens": 10329,
+        "total_tokens": 10754,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "finish_reason": "stop",
+      "consumed": true,
+      "error": null,
+      "read_completed": false
+    },
+    {
+      "trial": "gpt-oss-native-C01-r2",
+      "turn": 1,
+      "seconds": 52.828716,
+      "input_tokens": 6713,
+      "usage": null,
+      "finish_reason": null,
+      "consumed": true,
+      "error": {
+        "type": "LlamaCppResponseError",
+        "message": "llama.cpp response had an invalid HTTP status line."
+      },
+      "read_completed": false
+    }
+  ],
+  "seconds": 117.463203,
+  "operator_approvals_for_run": 0,
+  "provider_after": {
+    "configuration": {
+      "endpoint": "http://127.0.0.1:8081",
+      "model": "gpt-oss-20b-review-local",
+      "image": "7625abb46c6bb8357e214f949b409a152c0944228e5a653fbab112f98ad2de7e",
+      "artifact_sha256": "27cd6c432c7672cb812a92f611cf3ba7bbc35928262bb1e1253ff4ee6ae35901",
+      "context_tokens": 32768
+    },
+    "healthy": true,
+    "idle": true
+  }
+}

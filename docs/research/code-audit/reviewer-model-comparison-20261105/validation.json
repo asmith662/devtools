@@ -1,0 +1,53 @@
+{
+  "implementation_commit": "d2a3b3029ce996cabb9ec6a6bf7b66695c289676",
+  "protected": {
+    "schema": "development-validation-explicit-deadline-v1",
+    "status": "passed",
+    "head": "d2a3b3029ce996cabb9ec6a6bf7b66695c289676",
+    "exit_code": 0,
+    "seconds": 4833.292164,
+    "timeout_seconds": 7200,
+    "argv": [
+      "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+      "-m",
+      "scripts.validation.protected",
+      "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\validation\\reviewer-profile-protected-recovered.pytest.json",
+      "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\tests",
+      "--ignore=C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\tests\\experiments",
+      "--durations=30"
+    ],
+    "configured_gate": "100% production branch coverage, unchanged",
+    "inputs_unchanged": true,
+    "complete": true
+  },
+  "complete_local_receipts": {
+    "protected": ".local\\validation\\reviewer-profile-protected-recovered.json",
+    "sha256": "333ffa7bf2c1d45fc4f4fa79e6a9020d40289364dbeebc893260139ee3d79e67",
+    "child_sha256": "1850c0671e948a173082050980bdc0850d408525faa16703fb756d7bca497d97",
+    "phase_count": 13423,
+    "collection_errors": []
+  },
+  "passed": 4468,
+  "skipped_opt_in": 2,
+  "production_branch_coverage_percent": 100,
+  "focused_development": 63,
+  "stable_focused": 12,
+  "static": {
+    "maintained_ruff": "passed",
+    "maintained_format_files": 746,
+    "strict_default_mypy_files": 646,
+    "strict_explicit_owner_mypy_files": 5,
+    "layout": "passed"
+  },
+  "broad_historical_ruff": "31349 errors from traversing retained experiments; no archival normalization. Full local logs retained, maintained scope passed.",
+  "interrupted_entry": {
+    "at": "2026-11-06T01:57:31.020538+00:00",
+    "status": "interrupted-no-complete-result",
+    "cause": "Tool server restarted; old execution session40561 no longer exists. Process inspection finds only the three preexisting Nov3 Inspector processes, no protected parent/child.",
+    "last_progress": "\u0000",
+    "original_intent_sha256": "f8bfd92e28de9f8bf992ea9af2d341d7d35f542bda77c25631c36d1576646d70",
+    "executable_inputs_unchanged": true,
+    "recovery": "Fresh protected run on the same committed executable inputs is required; no partial pass reused and no inference or service effect repeated."
+  },
+  "post_experiment": "No executable production changes after gate; evidence-only checks follow, no comprehensive rerun."
+}

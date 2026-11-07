@@ -1,0 +1,69 @@
+{
+  "trial": "qwen-high-off-C01-r1",
+  "case": "C01",
+  "variant": "qwen-high-off",
+  "rep": 1,
+  "proposal": {
+    "subject_sha256": "68eed73fe7359a3fca5566b8181d4db277fd6fe9815e4f2361e256080cb6b1a5",
+    "candidate_sha256": "ea9619b09ebaca244b358179fecc7c952be37e07edac66ba5171f19b3af3b119",
+    "conclusion": {
+      "assessed_obligations": [
+        "objective",
+        "current-owner"
+      ],
+      "disposition": "reject",
+      "evidence": [
+        "public-C01",
+        "diff",
+        "candidate",
+        "baseline",
+        "task"
+      ],
+      "findings": [
+        {
+          "evidence": [
+            "public-C01",
+            "candidate",
+            "baseline"
+          ],
+          "kind": "observed",
+          "message": "Public check failed: input '# ##' yields title '##' where expected empty title ''. The candidate's new pattern keeps a leading-only hash run in the text group, so a heading whose entire title is a separated closing hash run is no longer stripped.",
+          "severity": "blocking"
+        },
+        {
+          "evidence": [
+            "diff",
+            "candidate"
+          ],
+          "kind": "inference",
+          "message": "The fix only handles the terminal-separated hash run via (?:(?<=[ \\t])...), leaving a hash-only title unstripped because the regex has no way to strip a leading hash run. The baseline's '[ \\t]*#*' stripped it. This is the root cause of the observed '# ##' failure and may affect other edge inputs (e.g., '# ####', '# ### ##') that the fixed public set does not cover.",
+          "severity": "blocking"
+        },
+        {
+          "evidence": [
+            "public-C01",
+            "diff",
+            "candidate"
+          ],
+          "kind": "observed",
+          "message": "Three of four public cases passed ('# C#', '# C# #', '# Title #'), confirming the attached-hash literal behavior and the separated-closer removal for non-empty titles work. Only the empty-title edge case fails. This is a partial, not total, failure of the contract.",
+          "severity": "advisory"
+        }
+      ],
+      "outstanding": [
+        "Behavior for hash-only title with trailing whitespace (e.g., '# ## ') and multiple hash runs (e.g., '# ## ###') is not covered by the fixed public inputs; not verified.",
+        "No independent verification that fence exclusion, section boundaries, and find_heading/find_section semantics remain unchanged, though the diff shows those paths are untouched.",
+        "Formal acceptance/custody records are unavailable in this calibration; production admission cannot be assessed here."
+      ],
+      "requests": [
+        "Add a regression test for a hash-only title (e.g., '# ##' expected title ''), and verify the empty-title and trailing-whitespace edge cases.",
+        "Re-run the public check on a corrected candidate before re-review."
+      ],
+      "summary": "The candidate changes only _ATX_HEADING_PATTERN in MarkdownFile (src/devtools/resources/filesystem/models/markdown/file.py), which satisfies the 'only the existing authorized model file may change' requirement. The new pattern correctly preserves attached literal hashes ('# C#' -> 'C#') and strips separated terminal closing hashes for non-empty titles ('# C# #' -> 'C#'), fixing the primary corruption reported in the task. However, the public check fails on the '# ##' case: expected empty title, actual '##'. The candidate's pattern does not strip a hash-only title, regressing the baseline behavior (baseline '[ \\t]*#*' stripped it). Since the task explicitly requires preserving empty titles and the current owner's title contract, this is a blocking defect. Disposition: reject. Note: this is a factual code recommendation against the public contract only; formal acceptance/custody records are unavailable in this calibration and are not being asserted here."
+    }
+  },
+  "terminal": "proposal returned",
+  "received_response_from": ".local\\reviewer-model-comparison\\qualified-qwen\\qwen-high-off-C01-r1\\1\\normalized.json",
+  "reads": 1,
+  "admission": "ValueError: Review cites unavailable evidence"
+}

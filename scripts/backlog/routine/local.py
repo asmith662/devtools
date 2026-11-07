@@ -44,7 +44,7 @@ COUNTERS = {
 }
 
 
-def eligible(
+def eligible(  # noqa: PLR0912 -- closed exact-scope admission guards
     policy: dict[str, Any],
     request: dict[str, Any],
     provider: dict[str, Any] | None,
@@ -52,7 +52,8 @@ def eligible(
     """Admit an exact public-resource plan; prose and model output confer no power."""
     if (
         "local" not in policy["operations"]
-        or policy["schema"] != "routine-development-policy-v3"
+        or policy["schema"]
+        not in {"routine-development-policy-v3", "routine-development-policy-v4"}
         or request["operation"] != "authorize-routine-local"
     ):
         raise PermissionError("Explicit local-work policy amendment required")
@@ -92,6 +93,18 @@ def eligible(
         raise PermissionError(
             "Role, profile, Tool or private disclosure requires escalation",
         )
+    configuration = policy["provider"]
+    ceilings = local["budgets"]
+    output_ceiling = policy["output_tokens"]
+    if policy["schema"] == "routine-development-policy-v4":
+        enrolled = local["provider_profiles"][scope["profile"]]
+        if scope["role"] not in enrolled["roles"] or not set(scope["roles"]) <= set(
+            enrolled["roles"]
+        ):
+            raise PermissionError("Role outside enrolled provider profile")
+        configuration = enrolled["provider"]
+        ceilings = enrolled["budgets"]
+        output_ceiling = ceilings["output_tokens"]
     RepositoryId.parse(scope["repository"])
     if (
         not isinstance(scope["inputs"], dict)
@@ -119,17 +132,17 @@ def eligible(
         or set(limits) != set(LOCAL)
         or any(
             type(limits[k]) is not int or not 0 <= limits[k] <= maximum
-            for k, maximum in local["budgets"].items()
+            for k, maximum in ceilings.items()
         )
         or limits["wall_seconds"] == 0
     ):
         raise PermissionError("Finite local resource allowance exceeded")
     if limits["model_calls"] and (
-        provider != {"configuration": policy["provider"], "healthy": True, "idle": True}
-        or not 0 < limits["output_tokens"] <= policy["output_tokens"]
+        provider != {"configuration": configuration, "healthy": True, "idle": True}
+        or not 0 < limits["output_tokens"] <= output_ceiling
         or not 0
         < limits["input_tokens"]
-        <= policy["provider"]["context_tokens"] - limits["output_tokens"]
+        <= configuration["context_tokens"] - limits["output_tokens"]
         or limits["call_seconds"] == 0
     ):
         raise PermissionError("Qualified pinned provider and reserved Context required")

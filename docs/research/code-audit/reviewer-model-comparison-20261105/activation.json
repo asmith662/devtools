@@ -1,0 +1,239 @@
+{
+  "control": {
+    "schema": "backlog-routine-control-v1",
+    "root": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools",
+    "principal": "recoveryadmin",
+    "at": "2026-11-06T03:19:02.204612+00:00",
+    "previous": "26b93f4ae7ca8dcfbf228f62dd0ffa4ea94057cf953e529e2f7db61e27f46978",
+    "action": "activate",
+    "policy": {
+      "schema": "routine-development-policy-v4",
+      "categories": [
+        "bug",
+        "refactor",
+        "enhancement"
+      ],
+      "edit_roots": [
+        "src/devtools/core/",
+        "src/devtools/context/",
+        "src/devtools/resources/filesystem/"
+      ],
+      "read_roots": [
+        "src/devtools/",
+        "tests/"
+      ],
+      "profiles": [
+        "qwen38-native64-portable-defaults-v1",
+        "qwen38-native64-independent-review-defaults-v1"
+      ],
+      "provider": {
+        "endpoint": "http://127.0.0.1:8080",
+        "model": "qwen38-local",
+        "image": "7625abb46c6bb8357e214f949b409a152c0944228e5a653fbab112f98ad2de7e",
+        "artifact_sha256": "40fac4050e940397dbf13087afd50f4734a11805bf9d65ef8ddd7483470e6199",
+        "context_tokens": 65536
+      },
+      "coding": {
+        "model_calls": 8,
+        "proposals": 3,
+        "acquisitions": 6,
+        "call_seconds": 120,
+        "wall_seconds": 900,
+        "prompt_bytes": 131072,
+        "source_bytes": 32768,
+        "capture_bytes": 983040
+      },
+      "review": {
+        "model_calls": 4,
+        "reads": 3,
+        "call_seconds": 120,
+        "wall_seconds": 480,
+        "prompt_bytes": 131072,
+        "response_bytes": 65536,
+        "capture_bytes": 983040
+      },
+      "output_tokens": 2048,
+      "grant_seconds": 10800,
+      "operations": [
+        "intake",
+        "coding",
+        "acceptance-review",
+        "diagnostic-review",
+        "host-review",
+        "integration-plan",
+        "git",
+        "local"
+      ],
+      "git": {
+        "remote": "origin",
+        "branches": [
+          "main"
+        ],
+        "force": false
+      },
+      "validation": "protected-development-100-percent-v1",
+      "coding_attempts": 2,
+      "local": {
+        "roles": [
+          "coding",
+          "planner",
+          "researcher",
+          "reviewer",
+          "supervisor"
+        ],
+        "purposes": [
+          "calibration",
+          "development",
+          "prompt-playbook",
+          "role-evaluation",
+          "source-analysis",
+          "working-memory"
+        ],
+        "read_roots": [
+          "src/",
+          "tests/",
+          "docs/",
+          "scripts/",
+          "experiments/",
+          ".local/"
+        ],
+        "tools": [
+          "find_source",
+          "read_source",
+          "read_source_unit",
+          "submit_review_proposal"
+        ],
+        "budgets": {
+          "model_calls": 16,
+          "input_tokens": 32768,
+          "output_tokens": 2048,
+          "total_output_tokens": 32768,
+          "reads": 32,
+          "source_bytes": 131072,
+          "checks": 16,
+          "call_seconds": 120,
+          "wall_seconds": 10800,
+          "capture_bytes": 4194304,
+          "delegations": 4,
+          "prompt_bytes": 262144,
+          "response_bytes": 65536
+        },
+        "profiles": [
+          "local-qwen-evaluation-v1",
+          "local-qwen-review-qualified-v1",
+          "local-gpt-oss-20b-review-v1"
+        ],
+        "provider_profiles": {
+          "local-qwen-evaluation-v1": {
+            "provider": {
+              "endpoint": "http://127.0.0.1:8080",
+              "model": "qwen38-local",
+              "image": "7625abb46c6bb8357e214f949b409a152c0944228e5a653fbab112f98ad2de7e",
+              "artifact_sha256": "40fac4050e940397dbf13087afd50f4734a11805bf9d65ef8ddd7483470e6199",
+              "context_tokens": 65536
+            },
+            "roles": [
+              "coding",
+              "planner",
+              "researcher",
+              "reviewer",
+              "supervisor"
+            ],
+            "budgets": {
+              "model_calls": 16,
+              "input_tokens": 32768,
+              "output_tokens": 2048,
+              "total_output_tokens": 32768,
+              "reads": 32,
+              "source_bytes": 131072,
+              "checks": 16,
+              "call_seconds": 120,
+              "wall_seconds": 10800,
+              "capture_bytes": 4194304,
+              "delegations": 4,
+              "prompt_bytes": 262144,
+              "response_bytes": 65536
+            }
+          },
+          "local-qwen-review-qualified-v1": {
+            "provider": {
+              "endpoint": "http://127.0.0.1:8080",
+              "model": "qwen38-local",
+              "image": "7625abb46c6bb8357e214f949b409a152c0944228e5a653fbab112f98ad2de7e",
+              "artifact_sha256": "40fac4050e940397dbf13087afd50f4734a11805bf9d65ef8ddd7483470e6199",
+              "context_tokens": 65536
+            },
+            "roles": [
+              "reviewer",
+              "supervisor"
+            ],
+            "budgets": {
+              "model_calls": 8,
+              "input_tokens": 16384,
+              "output_tokens": 8192,
+              "total_output_tokens": 65536,
+              "reads": 8,
+              "source_bytes": 131072,
+              "checks": 16,
+              "call_seconds": 600,
+              "wall_seconds": 10800,
+              "capture_bytes": 4194304,
+              "delegations": 4,
+              "prompt_bytes": 262144,
+              "response_bytes": 65536
+            }
+          },
+          "local-gpt-oss-20b-review-v1": {
+            "provider": {
+              "endpoint": "http://127.0.0.1:8081",
+              "model": "gpt-oss-20b-review-local",
+              "image": "7625abb46c6bb8357e214f949b409a152c0944228e5a653fbab112f98ad2de7e",
+              "artifact_sha256": "27cd6c432c7672cb812a92f611cf3ba7bbc35928262bb1e1253ff4ee6ae35901",
+              "context_tokens": 32768
+            },
+            "roles": [
+              "reviewer",
+              "supervisor"
+            ],
+            "budgets": {
+              "model_calls": 10,
+              "input_tokens": 16384,
+              "output_tokens": 8192,
+              "total_output_tokens": 81920,
+              "reads": 10,
+              "source_bytes": 131072,
+              "checks": 16,
+              "call_seconds": 600,
+              "wall_seconds": 10800,
+              "capture_bytes": 4194304,
+              "delegations": 4,
+              "prompt_bytes": 262144,
+              "response_bytes": 65536
+            }
+          }
+        }
+      }
+    },
+    "subject": null,
+    "reference": "codex-session:operator-response:+acitivate:reviewer-enrollment:9722f98db396dc350bfed68c057a545e1eacfe0ebe44e62cb66e6ec88f189d1f",
+    "sha256": "4fe32fc6bd33762ce7b166fc8031e16a7bcd7584c1d9c65676a280983e0b78a9"
+  },
+  "operator_response": {
+    "scope_sha256": "9722f98db396dc350bfed68c057a545e1eacfe0ebe44e62cb66e6ec88f189d1f",
+    "actual_user_response": "+acitivate",
+    "interpretation": "Explicit activation response to the immediately preceding exact proposal, with a typographical transposition; no silence or inferred per-run consent.",
+    "policy_activation": "PENDING_PROTECTED_VALIDATION"
+  },
+  "scope_sha256": "9722f98db396dc350bfed68c057a545e1eacfe0ebe44e62cb66e6ec88f189d1f",
+  "protected_receipt": {
+    "path": ".local\\validation\\reviewer-profile-protected-recovered.json",
+    "sha256": "333ffa7bf2c1d45fc4f4fa79e6a9020d40289364dbeebc893260139ee3d79e67",
+    "head": "d2a3b3029ce996cabb9ec6a6bf7b66695c289676",
+    "seconds": 4833.292164
+  },
+  "historical_controls_preserved": {
+    "control-0001.json": "7aa7d02ed850813951f25faba4560b63b13915257671ce294348f0e46702a3e4",
+    "control-0002.json": "fce803e659b78d81a9c97787e80160e9cf4c37a87d0208df5b415b0bc79f9fe8",
+    "control-0003.json": "54f964fb85d0cc0af75221d7311b54300423667f1e025cedd211c2306f85de86"
+  }
+}

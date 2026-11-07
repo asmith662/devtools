@@ -1,0 +1,97 @@
+{
+  "trial": "off-C01-r2",
+  "configuration": "off",
+  "case": "C01",
+  "rep": 2,
+  "calls": 2,
+  "reads": 1,
+  "proposal": {
+    "candidate_sha256": "ea9619b09ebaca244b358179fecc7c952be37e07edac66ba5171f19b3af3b119",
+    "subject_sha256": "9c95eb9bb650d8ad4a7adc32db2515d68bd86afbac47797e98b9a1ff1a3f672f",
+    "conclusion": {
+      "assessed_obligations": [
+        "objective",
+        "current-owner"
+      ],
+      "disposition": "reject",
+      "evidence": [
+        "task",
+        "baseline",
+        "candidate",
+        "diff",
+        "public-checks"
+      ],
+      "findings": [
+        {
+          "evidence": [
+            "public-checks"
+          ],
+          "kind": "observed",
+          "message": "Public check public-C01 failed (exit_code 1, outcome failed). Case \"# ##\" expected title \"\" but candidate produced \"##\". All other fixed cases passed: '# C#'->'C#', '# C# #'->'C#', '# Title #'->'Title'.",
+          "severity": "blocking"
+        },
+        {
+          "evidence": [
+            "diff",
+            "candidate"
+          ],
+          "kind": "inference",
+          "message": "The candidate pattern r'^(?P<marker>#{1,6})[ \\t]+(?P<text>.*?)(?:(?<=\\S)[ \\t]+#*|[ \\t]*)[ \\t]*$' strips a terminal hash run only when preceded by a non-space char ([ \\t]+#* under (?<=\\S)); when the title is only hashes separated from the marker by whitespace (e.g. \"# ##\"), no prior \\S exists, so the hashes remain literal and the empty-title/separated-closer behavior is broken for hash-only titles.",
+          "severity": "blocking"
+        }
+      ],
+      "outstanding": [
+        "Behavior for hash-only titles (e.g. '# ##', '# ###') is not preserved relative to baseline separated-closer semantics.",
+        "No additional evidence beyond the four fixed public inputs; broader regression scope (fence exclusion, hierarchy, lookup) is unchanged in text but not re-exercised."
+      ],
+      "requests": [
+        "Fix the pattern so a separated terminal hash run is stripped even when the title consists solely of hashes (empty-title case), then re-run public-C01 and a hash-only-title regression."
+      ],
+      "summary": "Candidate changes only _ATX_HEADING_PATTERN in the single authorized file (MarkdownFile model), preserving fence, section, lookup and source-line handling. It correctly keeps attached hashes literal ('# C#'->'C#') and strips a separated trailing hash run when preceded by non-space text ('# C# #', '# Title #'). However, the observed public check fails: for '# ##' the expected title is '' but the candidate yields '##'. The lookbehind (?<=\\S) only permits stripping a hash run when a non-space character precedes the separator, so hash-only titles are treated as literal rather than as a closing run, breaking the preserved empty-title/separated-closer behavior. This is a blocking defect against the task obligation, so the candidate is rejected on factual grounds."
+    }
+  },
+  "terminal": "proposal returned",
+  "error": null,
+  "admitted_conclusion": {
+    "assessed_obligations": [
+      "objective",
+      "current-owner"
+    ],
+    "disposition": "reject",
+    "evidence": [
+      "task",
+      "baseline",
+      "candidate",
+      "diff",
+      "public-checks"
+    ],
+    "findings": [
+      {
+        "evidence": [
+          "public-checks"
+        ],
+        "kind": "observed",
+        "message": "Public check public-C01 failed (exit_code 1, outcome failed). Case \"# ##\" expected title \"\" but candidate produced \"##\". All other fixed cases passed: '# C#'->'C#', '# C# #'->'C#', '# Title #'->'Title'.",
+        "severity": "blocking"
+      },
+      {
+        "evidence": [
+          "diff",
+          "candidate"
+        ],
+        "kind": "inference",
+        "message": "The candidate pattern r'^(?P<marker>#{1,6})[ \\t]+(?P<text>.*?)(?:(?<=\\S)[ \\t]+#*|[ \\t]*)[ \\t]*$' strips a terminal hash run only when preceded by a non-space char ([ \\t]+#* under (?<=\\S)); when the title is only hashes separated from the marker by whitespace (e.g. \"# ##\"), no prior \\S exists, so the hashes remain literal and the empty-title/separated-closer behavior is broken for hash-only titles.",
+        "severity": "blocking"
+      }
+    ],
+    "outstanding": [
+      "Behavior for hash-only titles (e.g. '# ##', '# ###') is not preserved relative to baseline separated-closer semantics.",
+      "No additional evidence beyond the four fixed public inputs; broader regression scope (fence exclusion, hierarchy, lookup) is unchanged in text but not re-exercised."
+    ],
+    "requests": [
+      "Fix the pattern so a separated terminal hash run is stripped even when the title consists solely of hashes (empty-title case), then re-run public-C01 and a hash-only-title regression."
+    ],
+    "summary": "Candidate changes only _ATX_HEADING_PATTERN in the single authorized file (MarkdownFile model), preserving fence, section, lookup and source-line handling. It correctly keeps attached hashes literal ('# C#'->'C#') and strips a separated trailing hash run when preceded by non-space text ('# C# #', '# Title #'). However, the observed public check fails: for '# ##' the expected title is '' but the candidate yields '##'. The lookbehind (?<=\\S) only permits stripping a hash run when a non-space character precedes the separator, so hash-only titles are treated as literal rather than as a closing run, breaking the preserved empty-title/separated-closer behavior. This is a blocking defect against the task obligation, so the candidate is rejected on factual grounds."
+  },
+  "admission": "admitted"
+}

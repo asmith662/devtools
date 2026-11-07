@@ -1,0 +1,66 @@
+"""Exact operator-authorized sequential service swap; no new lifecycle owner."""
+import asyncio,json,sys,urllib.request,hashlib
+from pathlib import Path
+from dataclasses import asdict
+sys.path.insert(0,str(Path.cwd()))
+from qualified import R,O,c,batch
+from devtools.models.serving.llama_cpp import LlamaCppServer,LlamaCppServingConfig,GGUFModel
+from devtools.resources.commands import Command,CommandExecutor,CommandOutputPolicy
+from devtools.core.paths import ResolvedPath
+from devtools.core.time import Duration,Timestamp,Stopwatch
+from scripts.backlog.work import WorkCycle
+
+async def main():
+ cycle=WorkCycle(R);activation=cycle.routine.active();assert activation['policy']['schema']=='routine-development-policy-v4'
+ assert '9722f98db396dc350bfed68c057a545e1eacfe0ebe44e62cb66e6ec88f189d1f' in activation['reference']
+ gate=c.load(R/'.local/validation/reviewer-profile-protected-final.json');assert gate['status']=='passed' and gate['inputs_unchanged'] and gate['complete']
+ assert not (O/'serving-intent.json').exists(),'Never replay a lifecycle operation; reconcile effects'
+ assert not (R/'.local/backlog/checkout-owner').exists()
+ _,qbefore=await c.provider(cycle);old=c.load(O/'provider-before.json');assert qbefore==old
+ ex=CommandExecutor(output_policy=CommandOutputPolicy(max_stdout_bytes=1048576,max_stderr_bytes=1048576))
+ async def docker(*args,timeout=180):
+  v=await ex.execute(Command('docker',args).with_timeout(Duration.seconds(timeout)));assert v.succeeded and not v.stdout_truncated and not v.stderr_truncated,(args,v.exit_code,v.stderr[:2048]);return v.stdout.decode().strip()
+ running=await docker('ps','--format','{{.ID}} {{.Names}} {{.Ports}}');assert '8081->' not in running
+ artifact=c.load(O/'gpt-oss-artifact.json');snapshot=Path.home()/'.cache/huggingface/hub/models--ggml-org--gpt-oss-20b-GGUF/snapshots/15dcfc7e7c608c6161507211ed43c5b590801b4b/gpt-oss-20b-MXFP4.gguf';assert snapshot.resolve()==Path(artifact['path']) and snapshot.stat().st_size==artifact['bytes']
+ profile=activation['policy']['local']['provider_profiles']['local-gpt-oss-20b-review-v1'];config=LlamaCppServingConfig(GGUFModel(ResolvedPath(snapshot)), 'ghcr.io/ggml-org/llama.cpp:server-cuda-b10868@sha256:'+profile['provider']['image'],8081,profile['provider']['model'],32768,'all',flash_attention='on',cache_type_k='f16',cache_type_v='f16',parallel_sequences=1)
+ c.save(O/'serving-intent.json',{'at':str(Timestamp.now()),'policy':activation['sha256'],'enrollment':activation['reference'],'qwen':qbefore,'config':asdict(config),'artifact':artifact,'running_containers':running,'custody_released':True,'restoration':'Mandatory same original Qwen container, configuration unchanged. No model download.'})
+ server=None;paused=False
+ try:
+  await docker('stop',old['container_id']);paused=True;c.save(O/'qwen-paused.json',{'at':str(Timestamp.now()),'container':old['container_id'],'inspect':json.loads(await docker('inspect',old['container_id']))[0]})
+  server=await LlamaCppServer.start(config=config,executor=ex,readiness_timeout=Duration.seconds(600));c.save(O/'gpt-oss-service.json',{'at':str(Timestamp.now()),'id':server.container_id,'endpoint':server.endpoint,'config':asdict(config)})
+  async def get(path):
+   def read():
+    with urllib.request.urlopen(server.endpoint+path,timeout=10) as response:return json.loads(response.read())
+   return await asyncio.to_thread(read)
+  props=await get('/props');c.save(O/'gpt-oss-props.json',props)
+  from qualified import adapter,original_request,initial,PromptMessage,PHASES,InteractionSource
+  renders={}
+  for name,p in c.load(O/'qualified-packets.json').items():
+   if not name.startswith('gpt-oss'):continue
+   client=adapter.LlamaCppInteraction(endpoint=server.endpoint,model=profile['provider']['model'],source=InteractionSource('render-only'));req=original_request(p,[*initial(p),PromptMessage('user',PHASES[0])],1);renders[name]=await adapter._post_json(client._endpoint,'/apply-template',client._request_payload(req))
+  c.save(O/'gpt-oss-rendered-initial.json',renders)
+  async def qualify():
+   cycle.routine.active(activation['sha256']);assert not (R/'.local/backlog/checkout-owner').exists();observed=json.loads(await docker('inspect',server.container_id))[0]
+   assert observed['State']['Running'] and not observed['State']['OOMKilled'] and observed['Image']=='sha256:'+profile['provider']['image']
+   expected=['--model','/models/gpt-oss-20b-MXFP4.gguf','--host','0.0.0.0','--port','8080','--alias',profile['provider']['model'],'--ctx-size','32768','--n-gpu-layers','all','--flash-attn','on','--cache-type-k','f16','--cache-type-v','f16','--parallel','1']
+   assert observed['Config']['Cmd']==expected
+   assert observed['HostConfig']['PortBindings']=={'8080/tcp':[{'HostIp':'127.0.0.1','HostPort':'8081'}]}
+   assert observed['Config']['Labels'].get('devtools.models.serving.managed')=='true'
+   assert len(observed['Mounts'])==1 and observed['Mounts'][0]['Source'].replace('\\','/').lower()==str(Path(artifact['path'])).replace('\\','/').lower() and observed['Mounts'][0]['RW'] is False and observed['Mounts'][0]['Destination']=='/models/gpt-oss-20b-MXFP4.gguf'
+   health=await get('/health');slots=await get('/slots');assert health['status']=='ok' and len(slots)==1 and not slots[0]['is_processing'];assert await get('/props')==props
+   c.save(O/f'gpt-oss-qualification-{len(list(O.glob("gpt-oss-qualification-*.json")))+1:03}.json',{'at':str(Timestamp.now()),'container':observed,'health':health,'slots':slots})
+   return {'configuration':profile['provider'],'healthy':True,'idle':True}
+  await qualify();await batch('gpt-oss',qualify)
+ finally:
+  if server is not None:
+   for stream in ('logs',):
+    v=await ex.execute(Command('docker',(stream,server.container_id)).with_timeout(Duration.seconds(30)));c.save(O/'gpt-oss-final-logs.json',{'stdout':v.stdout.decode(errors='replace'),'stderr':v.stderr.decode(errors='replace'),'exit_code':v.exit_code,'truncated':v.stdout_truncated or v.stderr_truncated})
+   await server.stop();c.save(O/'gpt-oss-stopped.json',{'at':str(Timestamp.now()),'id':server.container_id,'owned_removed':True})
+  if paused:
+   await docker('start',old['container_id']);timer=Stopwatch();last=None
+   while timer.elapsed.total_seconds<600:
+    try:
+     _,after=await c.provider(cycle);assert after==old;c.save(O/'qwen-restored.json',{'at':str(Timestamp.now()),'wait_seconds':timer.elapsed.total_seconds,'provider':after,'same_container_and_configuration':True});print('Original unchanged Qwen restored healthy/idle',flush=True);break
+    except Exception as error:last=type(error).__name__+': '+str(error);await asyncio.sleep(5)
+   else:raise RuntimeError('Qwen restoration not ready within600seconds; no further effects. '+str(last))
+if __name__=='__main__':asyncio.run(main())

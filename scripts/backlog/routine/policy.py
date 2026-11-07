@@ -88,7 +88,7 @@ LOCAL_TOOLS = {
 }
 
 
-def local_policy(value: dict[str, Any]) -> None:
+def local_policy(value: dict[str, Any], *, enrolled_profiles: bool = False) -> None:
     """Finite read-only evaluation/development scope, never native installation."""
     if not isinstance(value, dict) or set(value) != {
         "roles",
@@ -97,7 +97,7 @@ def local_policy(value: dict[str, Any]) -> None:
         "tools",
         "budgets",
         "profiles",
-    }:
+    } | ({"provider_profiles"} if enrolled_profiles else set()):
         raise ValueError("Closed local-work policy required")
     for key, allowed in (
         ("roles", ROLES),
@@ -139,6 +139,65 @@ def local_policy(value: dict[str, Any]) -> None:
         )
     ):
         raise ValueError("Finite local-work policy limits required")
+    if enrolled_profiles:
+        provider_profiles(value)
+
+
+def provider_profiles(value: dict[str, Any]) -> None:
+    """Validate prospectively enrolled local profiles without changing native bounds."""
+    enrolled = value["provider_profiles"]
+    if not isinstance(enrolled, dict) or set(enrolled) != set(value["profiles"]):
+        raise ValueError("Every local profile requires exact provider enrollment")
+    for entry in enrolled.values():
+        if not isinstance(entry, dict) or set(entry) != {
+            "provider",
+            "roles",
+            "budgets",
+        }:
+            raise ValueError("Closed local provider profile required")
+        pinned_provider(entry["provider"], alternate=True)
+        if (
+            not isinstance(entry["roles"], list)
+            or not entry["roles"]
+            or len(set(entry["roles"])) != len(entry["roles"])
+            or not set(entry["roles"]) <= set(value["roles"])
+        ):
+            raise PermissionError("Enrolled profile role requires escalation")
+        ceilings = {**LOCAL, "call_seconds": 600}
+        budgets = entry["budgets"]
+        if (
+            not isinstance(budgets, dict)
+            or set(budgets) != set(ceilings)
+            or any(
+                type(budgets[k]) is not int or not 0 < budgets[k] <= maximum
+                for k, maximum in ceilings.items()
+            )
+        ):
+            raise ValueError("Finite enrolled profile limits required")
+
+
+def pinned_provider(value: dict[str, Any], *, alternate: bool = False) -> None:
+    """Authenticate an explicit loopback profile, never an arbitrary endpoint."""
+    endpoints = {"http://127.0.0.1:8080"}
+    if alternate:
+        endpoints.add("http://127.0.0.1:8081")
+    if (
+        not isinstance(value, dict)
+        or set(value)
+        != {"endpoint", "model", "image", "artifact_sha256", "context_tokens"}
+        or value["endpoint"] not in endpoints
+        or not isinstance(value["model"], str)
+        or not value["model"]
+        or any(
+            not isinstance(value[k], str)
+            or len(value[k]) != 64
+            or any(c not in "0123456789abcdef" for c in value[k])
+            for k in ("image", "artifact_sha256")
+        )
+        or type(value["context_tokens"]) is not int
+        or not 1 <= value["context_tokens"] <= 65536
+    ):
+        raise ValueError("Exact pinned local provider identity required")
 
 
 def validate(value: dict[str, Any]) -> None:  # noqa: C901, PLR0912 -- closed policy schema
@@ -160,14 +219,22 @@ def validate(value: dict[str, Any]) -> None:  # noqa: C901, PLR0912 -- closed po
     } | (
         {"coding_attempts"}
         if value.get("schema")
-        in {"routine-development-policy-v2", "routine-development-policy-v3"}
+        in {
+            "routine-development-policy-v2",
+            "routine-development-policy-v3",
+            "routine-development-policy-v4",
+        }
         else set()
     ) | (
-        {"local"} if value.get("schema") == "routine-development-policy-v3" else set()
+        {"local"}
+        if value.get("schema")
+        in {"routine-development-policy-v3", "routine-development-policy-v4"}
+        else set()
     ) or value["schema"] not in {
         "routine-development-policy-v1",
         "routine-development-policy-v2",
         "routine-development-policy-v3",
+        "routine-development-policy-v4",
     }:
         raise ValueError("Closed routine policy required")
     if value["schema"] != "routine-development-policy-v1" and (
@@ -175,8 +242,11 @@ def validate(value: dict[str, Any]) -> None:  # noqa: C901, PLR0912 -- closed po
         or not 1 <= value["coding_attempts"] <= 100
     ):
         raise ValueError("Finite total coding-attempt ceiling required")
-    if value["schema"] == "routine-development-policy-v3":
-        local_policy(value["local"])
+    if value["schema"] in {
+        "routine-development-policy-v3",
+        "routine-development-policy-v4",
+    }:
+        local_policy(value["local"], enrolled_profiles=value["schema"].endswith("v4"))
     elif "local" in value["operations"]:
         raise PermissionError("Local work requires the explicit v3 amendment")
     if value["validation"] != "protected-development-100-percent-v1" or value[
@@ -229,28 +299,17 @@ def validate(value: dict[str, Any]) -> None:  # noqa: C901, PLR0912 -- closed po
         type(value["grant_seconds"]) is not int
         or not 1
         <= value["grant_seconds"]
-        <= (10800 if value["schema"].endswith("v3") else 3600)
+        <= (
+            3600
+            if value["schema"]
+            in {"routine-development-policy-v1", "routine-development-policy-v2"}
+            else 10800
+        )
         or type(value["output_tokens"]) is not int
         or not 1 <= value["output_tokens"] <= 8192
     ):
         raise ValueError("Finite grant lifetime and output allowance required")
-    p = value["provider"]
-    if (
-        not isinstance(p, dict)
-        or set(p) != {"endpoint", "model", "image", "artifact_sha256", "context_tokens"}
-        or p["endpoint"] != "http://127.0.0.1:8080"
-        or not isinstance(p["model"], str)
-        or not p["model"]
-        or any(
-            not isinstance(p[k], str)
-            or len(p[k]) != 64
-            or any(c not in "0123456789abcdef" for c in p[k])
-            for k in ("image", "artifact_sha256")
-        )
-        or type(p["context_tokens"]) is not int
-        or not 1 <= p["context_tokens"] <= 65536
-    ):
-        raise ValueError("Exact pinned local provider identity required")
+    pinned_provider(value["provider"])
 
 
 def qualification(value: dict[str, Any]) -> None:

@@ -1,0 +1,24 @@
+{
+  "content": "",
+  "source": {
+    "value": "reviewer-model:off"
+  },
+  "conversation": null,
+  "usage": {
+    "input_tokens": 8379,
+    "output_tokens": 61,
+    "total_tokens": 8440,
+    "cached_input_tokens": null,
+    "cache_write_tokens": null,
+    "reasoning_tokens": null
+  },
+  "termination": "tool_call",
+  "reasoning_content": null,
+  "tool_calls": [
+    {
+      "name": "read_source",
+      "arguments_json": "{\"path\":\".local/reviewer-model-comparison/C01/public-result.json\",\"start\":0,\"end\":4096}",
+      "provider_call_id": "tJiqHbHv0JDW1UP6u5mdBQM0m48HjeDp"
+    }
+  ]
+}

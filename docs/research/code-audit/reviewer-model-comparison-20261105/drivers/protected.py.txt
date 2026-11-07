@@ -1,0 +1,45 @@
+"""Existing protected pytest bootstrap with a two-hour managed deadline."""
+import asyncio,json,sys
+from pathlib import Path
+sys.path.insert(0,str(Path.cwd()))
+from devtools.core.paths import resolve_path
+from devtools.core.time import Duration,Stopwatch,Timestamp
+from devtools.resources.commands import Command,CommandExecutor,CommandOutputPolicy,CommandStdout,CommandStderr
+from devtools.resources.filesystem import TextFile,write
+from scripts.validate_development import pytest_arguments
+from scripts.validation.evidence import inputs,save
+R=Path.cwd();O=R/'.local/validation/reviewer-profile-protected-final';receipt=O.with_suffix('.json');child=O.with_suffix('.pytest.json')
+def dump(path,value):save(path,json.dumps(value,indent=2,default=str)+'\n')
+async def main():
+ assert not receipt.exists() and not child.exists() and not O.with_suffix('.intent.json').exists(),'Never replay a protected entry'
+ before=await asyncio.to_thread(inputs,R)
+ argv=['-m','scripts.validation.protected',str(child),*pytest_arguments(R),'--durations=30']
+ command=Command(sys.executable).args(*argv).cwd(resolve_path(R)).with_environment({'COVERAGE_FILE':str(O.with_suffix('.coverage'))}).with_timeout(Duration.seconds(7200))
+ dump(O.with_suffix('.intent.json'),{'at':str(Timestamp.now()),'head':before['head'],'argv':[sys.executable,*argv],'timeout_seconds':7200,'reuse':'Existing protected child/bootstrap and configured gate; explicit managed deadline only','before':before})
+ logs={'stdout':'','stderr':''};timer=Stopwatch()
+ execution=CommandExecutor(output_policy=CommandOutputPolicy(max_stdout_bytes=32<<20,max_stderr_bytes=4<<20)).start(command)
+ async def collect():
+  async for event in execution.events():
+   if isinstance(event,(CommandStdout,CommandStderr)):
+    name='stdout' if isinstance(event,CommandStdout) else 'stderr'
+    logs[name]+=event.data.decode('utf-8',errors='replace')
+  return await execution
+ task=asyncio.create_task(collect())
+ while not task.done():
+  await asyncio.wait({task},timeout=30)
+  last=logs['stdout'].strip().splitlines()
+  print(json.dumps({'protected_seconds':round(timer.elapsed.total_seconds,1),'running':not task.done(),'last':last[-1][-180:] if last else 'initializing'}),flush=True)
+ try:
+  result=await task
+  for name,text in logs.items():write(TextFile(resolve_path(O.with_suffix('.'+name)),text),overwrite=False)
+  after=await asyncio.to_thread(inputs,R)
+  complete=child.exists() and not result.stdout_truncated and not result.stderr_truncated
+  unchanged=before['sha256']==after['sha256']
+  passed=result.succeeded and complete and unchanged
+  dump(receipt,{'schema':'development-validation-explicit-deadline-v1','mode':'comprehensive','at':str(Timestamp.now()),'status':'passed' if passed else 'failed','head':before['head'],'exit_code':result.exit_code,'seconds':timer.elapsed.total_seconds,'timeout_seconds':7200,'argv':[sys.executable,*argv],'configured_gate':'100% production branch coverage, unchanged','before':before,'after':after,'inputs_unchanged':unchanged,'complete':complete,'child_receipt':str(child)})
+  print(json.dumps({'protected_result':'passed' if passed else 'failed','seconds':timer.elapsed.total_seconds,'receipt':str(receipt)}),flush=True)
+  if not passed:raise SystemExit(1)
+ except Exception as ex:
+  if not receipt.exists():dump(receipt,{'schema':'development-validation-explicit-deadline-v1','status':'interrupted-or-failed','error':type(ex).__name__+': '+str(ex),'seconds':timer.elapsed.total_seconds,'timeout_seconds':7200,'head':before['head']})
+  raise
+asyncio.run(main())

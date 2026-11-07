@@ -1,0 +1,65 @@
+"""Resume only authenticated received responses and reserved final calls; no inference replay."""
+import asyncio,json,hashlib,sys
+from pathlib import Path
+from dataclasses import asdict
+sys.path.insert(0,str(Path.cwd()))
+import qualified as q
+from devtools.models.interaction import ModelResponse,ModelUsage,ModelToolCall
+from scripts.backlog.intake import _digest
+R,O,c=q.R,q.O,q.c
+
+async def main():
+ original=O/'qualified-qwen';summary=c.load(original/'summary.json');grant=c.load(original/'grant.json');cycle=c.WorkCycle(R);record=cycle.routine.local.check(grant['reference']);scope_data=record['request']['scope'];assert len(summary['rows'])<=4 and all(r['turn']==1 and r['error'] is None for r in summary['rows']);assert all(t['error']['type']=='NameError' and t['error']['message']=="name 'seen' is not defined" for t in summary['trials']);entries=cycle.routine.local.records(grant['reference']);assert all(e['operation']=='model' for e in entries);assert len(entries)==len(summary['rows'])
+ for e in entries:
+  result=cycle.routine.load(cycle.routine.folder/'local'/record['sha256']/(e['sha256']+'-result.json'),'local-result');assert result['outcome']=='returned'
+ frozen=c.load(O/'qualified-frozen-v2.json');assert _digest(frozen['packet'])==frozen['sha256']
+ for name,h in frozen['packet']['files'].items():assert c.h(O/name)==h,name
+ folder=O/'qualified-qwen-resumed';assert not folder.exists(),'Never replay reserved work';folder.mkdir();q.prior.used=sum(p.stat().st_size for p in original.rglob('*') if p.is_file())
+ c.save(folder/'recovery-plan.json',{'original_grant':grant['reference'],'frozen':frozen['sha256'],'existing_model_entries':[e['sha256'] for e in entries],'correction':'Known host NameError before any source Tool effect. Process each already received response once, preserve its native ID and exact content, reconstruct Context through existing acquisition, then use only its originally reserved final call. No generation replay, new grant, budget renewal, scoring or prompt change.','maximum_additional_calls':scope_data['budgets']['model_calls']-len(entries),'driver_sha256':c.h(Path(__file__)),'protocol_deviation':'Known first-turn responses were received across independent conversations before their Tool processing/final phases; latency order differs from intended immediate per-trial continuation.'})
+ addresses=tuple(q.RepositoryResourceAddress(x) for x in scope_data['inputs']);source=q.SourceScope.observe(root=q.resolve_path(R),repository=q.Repository(q.RepositoryId.parse(scope_data['repository'])),addresses=addresses,maximum_resource_bytes=32768);corpus=q.prior.realize_repository_text_corpus(snapshot=source.snapshot,definition=q.prior.define_repository_text_corpus(discovery=q.prior.discover_repository_resource_addresses(repository=q.Repository(source.snapshot.repository_id),root=source.root,requested_addresses=addresses,maximum_resource_count=32,maximum_traversal_entry_count=512),selected_addresses=addresses));index=q.prior.build_source_search_index(source.snapshot,corpus=corpus)
+ async def guard():
+  cycle.routine.local.check(grant['reference']);source.check_current()
+  for name,h in frozen['packet']['files'].items():assert c.h(O/name)==h,name
+ async def qualify():return (await c.provider(cycle))[0]
+ rows=[];trials=[]
+ for variant,case,rep in q.PLAN['qwen_order']:
+  name=f'{variant}-{case}-r{rep}';p=c.load(O/'qualified-packets.json')[name];p['policy']['source']=scope_data['actor'];p['policy']['actor']=scope_data['actor'];step=folder/name;step.mkdir();cap=q.prior.Capture(step);messages=q.initial(p);refs=dict(p['subject']['references']);claimed=set();result={'trial':name,'case':case,'variant':variant,'rep':rep,'proposal':None,'terminal':None,'received_response_from':str((original/name/'1/normalized.json').relative_to(R))};data=c.load(original/name/'1/normalized.json');assert data['conversation'] is None and data['source']['value']==scope_data['actor'];response=ModelResponse(content=data['content'],source=q.InteractionSource(data['source']['value']),usage=ModelUsage(**data['usage']) if data['usage'] else None,termination=q.ModelTermination(data['termination']) if data['termination'] else None,reasoning_content=data['reasoning_content'],tool_calls=tuple(ModelToolCall(**call) for call in data['tool_calls']));assert json.loads(json.dumps(asdict(response),default=str))==data
+  req=q.original_request(p,[*messages,q.PromptMessage('user',q.PHASES[0])],1);seen={call.provider_call_id for call in response.tool_calls};assert all(seen) and len(seen)==len(response.tool_calls)
+  if response.termination==q.ModelTermination.OUTPUT_LIMIT:result['terminal']='output-limit-censored'
+  elif len(response.tool_calls)==1 and response.tool_calls[0].name==q.delivery.NAME:
+   result['proposal']=json.loads(response.tool_calls[0].arguments_json);result['terminal']='proposal returned'
+   try:result['admitted_conclusion']=q.delivery.conclusion(p,asdict(req),asdict(response),refs,claimed);result['admission']='admitted'
+   except Exception as error:result['admission']=type(error).__name__+': '+str(error)
+  elif len(response.tool_calls)==1 and response.tool_calls[0].name=='read_source':
+   await guard();arg=q.read_request(response.tool_calls[0].arguments_json,index=index,purpose='Independent public review',maximum_bytes=32768,by_unit=False);selected=q.select_source_read(arg);assert not isinstance(selected,q.SourceReadRefusal) and str(arg.unit.resource.address) in p['policy']['read_paths'] and len(selected.text.encode())<=4096;entry=cycle.routine.local.enter(grant['reference'],'read',{'path':str(arg.unit.resource.address),'maximum_bytes':4096,'call':asdict(response.tool_calls[0])})
+   try:
+    reads=await q.acquire(response,req,scope=source,index=index,reads=0,budgets=p['policy']['budgets'],messages=messages,references=refs,claimed=claimed,capture=cap,guard=guard);cycle.routine.local.complete(grant['reference'],entry,{'completed':True,'identity':refs['read:1'],'reconstructed_response':c.h(original/name/'1/normalized.json')});result['reads']=reads
+   except Exception as error:cycle.routine.local.complete(grant['reference'],entry,{'error':str(error)},outcome='unknown-or-failed');raise
+   req=q.original_request(p,[*messages,q.PromptMessage('user',q.PHASES[1])],2);client=q.adapter.LlamaCppInteraction(endpoint='http://127.0.0.1:8080',model='qwen38-local',source=q.InteractionSource(scope_data['actor']));body=json.dumps(client._request_payload(req),separators=(',',':')).encode();q.prior.put(step/'request.json',body);q.prior.put(step/'model-request.json',asdict(req));q.prior.put(step/'memory-before.json',await q.prior.memory());q.prior.put(step/'intent.json',{'at':str(q.Timestamp.now()),'grant':grant['reference'],'turn':2,'wire_sha256':hashlib.sha256(body).hexdigest()});reader=q.adapter._read_http_response;captured=[];measured={};before=len(cycle.routine.local.records(grant['reference']))
+   async def capture(stream):
+    status,raw=await reader(stream);assert len(raw)<=65536;q.prior.put(step/'response-body.json',raw);q.prior.put(step/'http.json',{'status':status,'sha256':hashlib.sha256(raw).hexdigest()});captured.append(raw);return status,raw
+   async def measure(value):
+    q.adapter._read_http_response=reader
+    try:count=await client.count_input_tokens(value)
+    finally:q.adapter._read_http_response=capture
+    measured['input_tokens']=count;return count
+   timer=q.Stopwatch();error=None;returned=None;q.adapter._read_http_response=capture
+   try:returned=await cycle.routine.local.interact(grant['reference'],req,interaction=client,qualify=qualify,measure=measure)
+   except Exception as ex:error={'type':type(ex).__name__,'message':str(ex)}
+   finally:q.adapter._read_http_response=reader
+   q.prior.put(step/'memory-after.json',await q.prior.memory());new=cycle.routine.local.records(grant['reference'])[before:];q.prior.put(step/'entries.json',new);raw=json.loads(captured[0]) if captured else {};row={'trial':name,'turn':2,'seconds':timer.elapsed.total_seconds,'input_tokens':measured.get('input_tokens'),'usage':raw.get('usage'),'finish_reason':raw.get('choices',[{}])[0].get('finish_reason'),'consumed':any(e['operation']=='model' for e in new),'error':error}
+   if returned is None:result['terminal']='unknown-or-failed';result['error']=error
+   else:
+    q.prior.put(step/'normalized.json',asdict(returned));ids=[call.provider_call_id for call in returned.tool_calls];assert all(ids) and len(ids)==len(set(ids)) and not seen.intersection(ids)
+    if returned.termination==q.ModelTermination.OUTPUT_LIMIT:result['terminal']='output-limit-censored'
+    elif len(returned.tool_calls)==1 and returned.tool_calls[0].name==q.delivery.NAME:
+     result['proposal']=json.loads(returned.tool_calls[0].arguments_json);result['terminal']='proposal returned'
+     try:result['admitted_conclusion']=q.delivery.conclusion(p,asdict(req),asdict(returned),refs,claimed);result['admission']='admitted'
+     except Exception as ex:result['admission']=type(ex).__name__+': '+str(ex)
+    else:result['terminal']='known protocol failure';result['error']='No final native proposal'
+   q.prior.put(step/'result.json',row);rows.append(row);print(json.dumps(row),flush=True)
+  else:result['terminal']='known protocol failure';result['error']='Received response was not a supported single native Tool call'
+  q.prior.put(step/'trial-result.json',result);trials.append(result)
+  if result['terminal']=='unknown-or-failed':break
+ total=len([e for e in cycle.routine.local.records(grant['reference']) if e['operation']=='model']);assert total<=8;q.prior.put(folder/'summary.json',{'trials':trials,'rows':rows,'original_rows':summary['rows'],'same_grant':grant['reference'],'total_generations':total,'replayed_generations':0,'provider_after':await qualify(),'operator_approvals_for_run':0});print(json.dumps({'complete':True,'generations_total':total,'replayed':0}),flush=True)
+if __name__=='__main__':asyncio.run(main())

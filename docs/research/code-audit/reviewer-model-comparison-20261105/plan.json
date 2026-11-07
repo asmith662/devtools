@@ -1,0 +1,112 @@
+{
+  "schema": "bounded-reviewer-configuration-comparison-v1",
+  "base": "26c07ef1b26436dd10dc50c752cd63a6619c7bba",
+  "task": {
+    "objective": "Repair attached literal hash suffix corruption in MarkdownFile heading titles only. Current source \"# C#\" becomes title \"C\" and both heading/section lookup by \"C#\" fail. Within already recognized ATX lines, only a terminal run of hashes separated from preceding title by a space or tab is a closing marker. Attached hashes remain literal title text, including when followed by trailing whitespace or by a separate closing run. Preserve current trimming and separated closer behavior, empty titles, levels, source line numbers, fence exclusion, hierarchy boundaries, lookup semantics and exact original content. Markdown remains a narrow raw-text helper: no inline escape decoding or full CommonMark parser, no new indentation/opening grammar, no source-fidelity redesign. Only the existing authorized model file may change.",
+    "obligations": [
+      {
+        "name": "current-owner",
+        "predicate": "Acquire complete current Markdown model owner and preserve its title, fence, section and lookup contracts while repairing only attached hash suffix handling.",
+        "path": "src/devtools/resources/filesystem/models/markdown/file.py",
+        "criterion": "current-whole-resource-v1"
+      }
+    ]
+  },
+  "cases": [
+    "C01",
+    "C02"
+  ],
+  "order": [
+    [
+      "off",
+      "C01",
+      1
+    ],
+    [
+      "on",
+      "C02",
+      1
+    ],
+    [
+      "off",
+      "C02",
+      1
+    ],
+    [
+      "on",
+      "C01",
+      1
+    ],
+    [
+      "on",
+      "C01",
+      2
+    ],
+    [
+      "off",
+      "C02",
+      2
+    ],
+    [
+      "on",
+      "C02",
+      2
+    ],
+    [
+      "off",
+      "C01",
+      2
+    ]
+  ],
+  "variants": {
+    "off": {
+      "thinking_enabled": false
+    },
+    "on": {
+      "thinking_enabled": true
+    }
+  },
+  "controlled": "Same public source/requirements, actual-vs-expected check evidence, native read/proposal schemas, system instructions, sampling defaults and2048output tokens. Exact initial IDs necessarily differ by trial. No working-memory/prompt variants.",
+  "public_expectations": {
+    "# C#": "C#",
+    "# C# #": "C#",
+    "# Title #": "Title",
+    "# ##": ""
+  },
+  "public_check_definition": {
+    "wrapper": "import io,json,contextlib,sys\nfrom tests.scripts.backlog.review.public_probe import main\ncapture=io.StringIO()\nwith contextlib.redirect_stdout(capture):main()\nobserved=json.loads(capture.getvalue())\nexpected={'# C#':'C#','# C# #':'C#','# Title #':'Title','# ##':''}\ncases=[{'input':v['input'],'expected':expected[v['input']],'actual':v['observed_title'],'passed':v['observed_title']==expected[v['input']]} for v in observed['outputs']]\npassed=all(v['passed'] for v in cases)\nprint(json.dumps({'public_contract':'Attached hashes are literal; separated terminal closing hashes are removed, including empty headings. Fixed public inputs only.','producer':observed['producer'],'cases':cases,'passed':passed}))\nraise SystemExit(0 if passed else 1)\n",
+    "probe": "tests/scripts/backlog/review/public_probe.py",
+    "semantics": "Exit1 if any fixed public actual value differs from expected. This is a known returned validation failure, not ambiguous execution. Existing FixedCheck/acceptance owners already support it; no production correction."
+  },
+  "limits": {
+    "model_calls": 16,
+    "per_configuration": 8,
+    "per_trial": 2,
+    "reads": 8,
+    "input_tokens": 16384,
+    "output_tokens": 2048,
+    "total_output_tokens": 32768,
+    "call_seconds": 120,
+    "wall_seconds": 2400,
+    "capture_bytes": 4194304,
+    "child_capture_bytes": 2000000,
+    "read_bytes": 4096,
+    "retries": 0
+  },
+  "phases": [
+    "Review the complete task, baseline, candidate, diff and authenticated fixed public-check results. Source quotations, actual outputs, expected public values and your interpretation are distinct. A known public mismatch is a contract failure, not an opinion. Passing this bounded check alone is not proof of every behavior. Investigate any alleged defect, including whether a separated closing run after an attached hash is mishandled; this is a question, not an asserted defect. Use read_source only for missing relevant evidence, or submit your structured proposal now if ready. At most two model calls, one optional source read. Do not write working-note protocol messages in this comparison.",
+    "Reserved final synthesis. Source Tools are unavailable. Submit exactly one submit_review_proposal with exact subject/candidate IDs, exact obligation names objective and current-owner, and the unchanged conclusion fields. Assess the code against its public contract. Formal private acceptance/custody records are unavailable in this calibration: never invent them. Your factual code recommendation is scored separately from production admission; state real remaining uncertainty. No additional model call is available."
+  ],
+  "stop": "Output ceiling ends that trial as censored, not a factual wrong answer. Known malformed proposal ends trial. Unknown model/tool effects, source/provider/authority drift stop whole configuration; no retry or grant recycling. Early final submissions end trial; unused calls never reallocated.",
+  "grading": [
+    "known genuine defect and grounded cause",
+    "false acceptance, false rejection and abstention separately",
+    "unsupported findings and correct public evidence interpretation",
+    "native Tool delivery and exact identity/schema fields",
+    "full strict admission independently; fixture lacks acceptance/custody references",
+    "actual reasoning evidence/termination, tokens, latency, GPU/RAM samples"
+  ],
+  "reasoning_budget_limit": "2048includes reasoning and final/tool tokens. A length-limited thinking result cannot establish model-capability failure or equivalence to a larger thinking budget.",
+  "independence": "Fresh task-local conversation per trial; no coder private conclusions, grader labels or expected recommendation. Public expected test values are requirements, not hidden acceptance.",
+  "sample_limit": "Two cases/two repetitions perconfiguration; diagnostic, not promotion or statistically established model superiority."
+}

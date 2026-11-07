@@ -1,0 +1,81 @@
+{
+  "reference": "routine-v1:4fe32fc6bd33762ce7b166fc8031e16a7bcd7584c1d9c65676a280983e0b78a9:793ce0ad2c40b55dd428d9d8ed0f1ee8c0c74134f3c53bde77e8ce4b111ea7f4",
+  "decision": {
+    "schema": "backlog-routine-decision-v1",
+    "policy_version": "4fe32fc6bd33762ce7b166fc8031e16a7bcd7584c1d9c65676a280983e0b78a9",
+    "subject": "calibration:reviewer-model-qualified-gpt-oss",
+    "subjects": [
+      "calibration:reviewer-model-qualified-gpt-oss"
+    ],
+    "kind": "local",
+    "request": {
+      "operation": "authorize-routine-local",
+      "scope": {
+        "subject": "calibration:reviewer-model-qualified-gpt-oss",
+        "plan_sha256": "65184dc248a9222ade1e9dc81116f0c7b7a1c060abab884c883ef6ade71305b4",
+        "repository": "5d0bac37-b85a-49af-8c36-b2b87e9c6e2a",
+        "actor": "reviewer-model:gpt-oss",
+        "role": "reviewer",
+        "roles": [],
+        "purpose": "role-evaluation",
+        "profile": "local-gpt-oss-20b-review-v1",
+        "inputs": {
+          ".local/reviewer-model-comparison/C01/candidate.txt": "573bafe2fb7fa16fc824bdee7be5fe99539220d4f1c145f726c215093ca2227c",
+          ".local/reviewer-model-comparison/C01/public-result.json": "0abc524df8129e0c3a16c1eadf39660bfc22b74e3105f4301dc1e907afd3c5ca",
+          ".local/reviewer-model-comparison/C02/candidate.txt": "f7923b67f624e5c598eed5e0fdb4e38cc3b2e90db67d194cd369bb82f72f6bb0",
+          ".local/reviewer-model-comparison/C02/public-result.json": "1a8dc53d6c055ff50c5d1b83d5052b344c087f337a73a413960be09d73e9fee1",
+          ".local/reviewer-model-comparison/baseline.txt": "bf8e902178301bd59e4d281a2c05914b87ed84ef8c6f03e8dbbe8fe650b15f42",
+          ".local/reviewer-model-comparison/plan.json": "eb0d263f99024f1a2f30dc129b30793d80c4abd7f0028973e29c05e3fbd1a825",
+          "tests/scripts/backlog/review/public_probe.py": "420e351f9a78986d36582b27f78c977f2bf608667ec76c2bdaec0b2b136b48de"
+        },
+        "tools": [
+          "read_source",
+          "submit_review_proposal"
+        ],
+        "checks": {},
+        "private_oracle": false,
+        "budgets": {
+          "model_calls": 8,
+          "input_tokens": 16384,
+          "output_tokens": 8192,
+          "total_output_tokens": 65536,
+          "reads": 4,
+          "source_bytes": 131072,
+          "checks": 0,
+          "call_seconds": 600,
+          "wall_seconds": 10800,
+          "capture_bytes": 4194304,
+          "delegations": 0,
+          "prompt_bytes": 262144,
+          "response_bytes": 65536
+        }
+      },
+      "parent": null,
+      "source_snapshot": "63132e1457213f6647131ab952f43aa9211fca635b8a763a16ff24b441880a55"
+    },
+    "assessment": {
+      "reference": "Explicitly enrolled frozen model comparison, public inputs only; no source/private oracle/native attempts or service effects delegated.",
+      "architecture": false,
+      "security": false,
+      "destructive": false,
+      "secrets": false,
+      "paid": false,
+      "service_change": false,
+      "validation_relaxation": false
+    },
+    "provider": {
+      "configuration": {
+        "endpoint": "http://127.0.0.1:8081",
+        "model": "gpt-oss-20b-review-local",
+        "image": "7625abb46c6bb8357e214f949b409a152c0944228e5a653fbab112f98ad2de7e",
+        "artifact_sha256": "27cd6c432c7672cb812a92f611cf3ba7bbc35928262bb1e1253ff4ee6ae35901",
+        "context_tokens": 32768
+      },
+      "healthy": true,
+      "idle": true
+    },
+    "at": "2026-11-06T03:47:53.928464+00:00",
+    "expires_at": "2026-11-06T06:47:53.928437+00:00",
+    "sha256": "793ce0ad2c40b55dd428d9d8ed0f1ee8c0c74134f3c53bde77e8ce4b111ea7f4"
+  }
+}

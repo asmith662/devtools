@@ -1393,6 +1393,123 @@ async def _read_framed_response(
 
 
 @pytest.mark.parametrize(
+    ("line", "status"),
+    [
+        (b"HTTP/1.1 200 OK", 200),
+        (b"HTTP/1.1 200 All Good", 200),
+        (b"HTTP/1.1 200 ", 200),
+        (b"HTTP/1.0 404 Not Found", 404),
+        (b"HTTP/1.1 429 Too Many Requests", 429),
+        (b"HTTP/1.1 500 Internal Server Error", 500),
+        (b"HTTP/1.1 503 ", 503),
+        (b"HTTP/1.1 200 description\twith\t\xff", 200),
+    ],
+)
+def test_status_line_preserves_code_with_optional_reason_phrase(
+    line: bytes,
+    status: int,
+) -> None:
+    """RFC 9112 reason text cannot change the numeric response boundary."""
+    assert asyncio.run(_read_framed_response(line + b"\r\n\r\n")) == (status, b"")
+
+
+@pytest.mark.parametrize("status", [400, 404, 429, 500, 503])
+def test_real_server_error_with_multiword_reason_is_not_a_model_response(
+    monkeypatch: pytest.MonkeyPatch,
+    status: int,
+) -> None:
+    """Preserve a bounded server diagnostic without accepting a failed generation."""
+    writer = _Writer()
+    detail = (
+        "The model produced output that does not match the expected peg-native format"
+    )
+    body = json.dumps({"error": {"message": detail + "x" * 2048}}).encode()
+    wire = (
+        f"HTTP/1.1 {status} Server Failure Detail\r\n"
+        f"Content-Length: {len(body)}\r\n\r\n"
+    ).encode() + body
+
+    async def connection(
+        _host: str,
+        _port: int,
+    ) -> tuple[asyncio.StreamReader, _Writer]:
+        return _reader(wire), writer
+
+    monkeypatch.setattr(asyncio, "open_connection", connection)
+    with pytest.raises(LlamaCppHttpError) as raised:
+        asyncio.run(_interaction().send(_message(ConversationMessageRole.USER)))
+    assert raised.value.status == status
+    assert detail in str(raised.value)
+    assert len(str(raised.value)) < 1200  # noqa: PLR2004 -- bounded external diagnostic
+    assert writer.closed
+
+
+@pytest.mark.parametrize(
+    "line",
+    [
+        b"garbage 200 OK",
+        b"HTTP/2.0 200 OK",
+        b"HTTP/1.1 20 OK",
+        b"HTTP/1.1 2000 OK",
+        b"HTTP/1.1 +20 OK",
+        b"HTTP/1.1 abc OK",
+        b"HTTP/1.1 200",
+        b"HTTP/1.1\t200 OK",
+        b"HTTP/1.1 200 bad\x00reason",
+        b"HTTP/1.1 200 bad\x7freason",
+        b"HTTP/1.1 200 bad\nreason",
+    ],
+)
+def test_status_line_rejects_malformed_protocol_code_or_reason(line: bytes) -> None:
+    """Only the RFC status boundary is accepted; reason text cannot inject framing."""
+    with pytest.raises(LlamaCppResponseError, match="invalid HTTP status"):
+        asyncio.run(_read_framed_response(line + b"\r\n\r\n"))
+
+
+@pytest.mark.parametrize("framing", ["length", "chunked", "eof"])
+def test_response_body_bound_is_exact_and_transport_independent(
+    monkeypatch: pytest.MonkeyPatch,
+    framing: str,
+) -> None:
+    """Finite body reading applies before JSON or successful-response admission."""
+    monkeypatch.setattr(llama_cpp, "_MAX_RESPONSE_BODY_BYTES", 4)
+
+    def wire(body: bytes) -> bytes:
+        prefix = b"HTTP/1.1 200 OK\r\n"
+        if framing == "length":
+            return prefix + f"Content-Length: {len(body)}\r\n\r\n".encode() + body
+        if framing == "chunked":
+            return (
+                prefix
+                + b"Transfer-Encoding: chunked\r\n\r\n"
+                + b"2\r\n"
+                + body[:2]
+                + b"\r\n"
+                + f"{len(body) - 2:x}\r\n".encode()
+                + body[2:]
+                + b"\r\n0\r\n\r\n"
+            )
+        return prefix + b"\r\n" + body
+
+    assert asyncio.run(_read_framed_response(wire(b"1234"))) == (200, b"1234")
+    with pytest.raises(LlamaCppResponseError, match="body limit"):
+        asyncio.run(_read_framed_response(wire(b"12345")))
+
+
+def test_declared_oversized_body_is_rejected_before_reading(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """An attacker-sized Content-Length never drives an unbounded allocation."""
+    monkeypatch.setattr(llama_cpp, "_MAX_RESPONSE_BODY_BYTES", 4)
+    with pytest.raises(LlamaCppResponseError, match="body limit"):
+        asyncio.run(
+            _read_framed_response(
+                b"HTTP/1.1 200 OK\r\nContent-Length: 999999999\r\n\r\n",
+            ),
+        )
+
+
+@pytest.mark.parametrize(
     ("response", "match"),
     [
         (b"HTTP/1.1 200 Test\r\nBroken\r\n\r\n", "invalid HTTP header"),

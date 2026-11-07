@@ -1,0 +1,112 @@
+"""Approved profile follow-up: existing local authority, ModelInteraction and review owners."""
+import asyncio,hashlib,json,sys
+from pathlib import Path
+from dataclasses import asdict
+sys.path.insert(0,str(Path.cwd()))
+import run as prior
+from prepare import R,O,c,initial,PHASES,request as original_request
+from devtools.context import Repository,RepositoryResourceAddress
+from devtools.context.repository.identity import RepositoryId
+from devtools.core.paths import resolve_path
+from devtools.core.time import Stopwatch,Timestamp
+from devtools.models.interaction import ModelRequest,ModelSettings,Prompt,PromptMessage,InteractionSource,ModelTermination
+from devtools.models.interaction.providers import llama_cpp as adapter
+from devtools.tools.source import SourceScope,select_source_read,SourceReadRefusal
+from devtools.agents.coding.protocol import read_request
+from scripts.backlog.native.review import delivery
+from scripts.backlog.native.review.acquisition import acquire
+from scripts.backlog.intake import _digest
+
+PLAN={
+ 'schema':'reviewer-model-qualified-comparison-v1',
+ 'prior_frozen':'17942161008a09b9f1084d96f11e3834bda36f01a04e6e215bec54d00921f284',
+ 'enrollment':'9722f98db396dc350bfed68c057a545e1eacfe0ebe44e62cb66e6ec88f189d1f',
+ 'variants':{'qwen-high-off':False,'qwen-high-on':True,'gpt-oss-native':None},
+ 'qwen_order':[['qwen-high-off','C01',1],['qwen-high-on','C02',1],['qwen-high-off','C02',1],['qwen-high-on','C01',1]],
+ 'alternate_order':[['gpt-oss-native','C02',1],['gpt-oss-native','C01',1],['gpt-oss-native','C01',2],['gpt-oss-native','C02',2]],
+ 'limits':{'output_tokens':8192,'input_tokens':16384,'call_seconds':600,'calls_per_trial':2,'calls_per_model_packet':8,'reads_per_packet':4,'wall_seconds':10800,'capture_bytes':4194304},
+ 'control':'Same frozen task, candidate/baseline/diff/public check evidence, system prompt, native Tools, phase instructions and grader. Qwen comparison changes only thinking flag at equal8192ceiling; one repetition/case/flag. gpt-oss gets native Harmony default reasoning (capture actual props/render), same8192ceiling with two repetitions/case. Model-native sampling/template differences are captured and cannot be separated from model configuration.',
+ 'scoring':'Existing independent grader unchanged: grounded true defect vs false acceptance/rejection/abstention; unsupported findings; actual/expected interpretation; native Tool/schema/identity delivery; strict admission separate (missing real acceptance/custody references); reasoning/output truncation censored; tokens, latency and sampled memory. No promotion from one success.',
+ 'stops':'No retries. Unknown inference/tool effects stop packet. Known malformed protocol stops trial. Output-length ends trial as censored. No reallocation of unused calls. Failed lifecycle requires reconciliation and restoration. No extra prompt or memory variants.',
+ 'smoke':'At most two separate compatibility calls for gpt-oss if needed; existing real review calls themselves qualify native Tool/schema transport, so do not spend smoke calls absent a concrete compatibility question.'}
+
+def packets():
+ result={}
+ for variant,case,rep in PLAN['qwen_order']+PLAN['alternate_order']:
+  p=json.loads(json.dumps(c.load(O/'packets.json')[f"off-{case}-r{rep}"]));p['policy']['actor']='reviewer-model:'+variant;p['policy']['source']=p['policy']['actor'];p['policy']['settings']=asdict(ModelSettings(maximum_output_tokens=8192,thinking_enabled=PLAN['variants'][variant]));p['sha256']=_digest({'subject':p['subject'],'variant':variant,'rep':rep,'plan':PLAN});result[f'{variant}-{case}-r{rep}']=p
+ return result
+
+def freeze():
+ assert not (O/'qualified-frozen.json').exists()
+ c.save(O/'qualified-plan.json',PLAN);c.save(O/'qualified-packets.json',packets())
+ files=['qualified.py','qualified-plan.json','qualified-packets.json','grader-only.json','baseline.txt','C01/candidate.txt','C02/candidate.txt','C01/public-result.json','C02/public-result.json']
+ bodies=[]
+ for name,p in packets().items():
+  model='gpt-oss-20b-review-local' if name.startswith('gpt') else 'qwen38-local';client=adapter.LlamaCppInteraction(endpoint='http://127.0.0.1:8081' if name.startswith('gpt') else 'http://127.0.0.1:8080',model=model,source=InteractionSource(p['policy']['source']));req=original_request(p,[*initial(p),PromptMessage('user',PHASES[0])],1);body=json.dumps(client._request_payload(req),separators=(',',':')).encode();bodies.append({'trial':name,'request':asdict(req),'wire_sha256':hashlib.sha256(body).hexdigest()})
+ c.save(O/'qualified-initial-requests.json',bodies);files.append('qualified-initial-requests.json');packet={'plan_sha256':_digest(PLAN),'files':{x:c.h(O/x) for x in files},'generations':0,'status':'Frozen before qualified inference; activation and protected pass required'};c.save(O/'qualified-frozen.json',{'packet':packet,'sha256':_digest(packet)});print(json.dumps({'frozen':_digest(packet),'requests':len(bodies),'generations':0}))
+
+async def batch(kind,qualify):
+ frozen=c.load(O/'qualified-frozen.json');assert _digest(frozen['packet'])==frozen['sha256']
+ for name,h in frozen['packet']['files'].items():assert c.h(O/name)==h,name
+ cycle=c.WorkCycle(R);active=cycle.routine.active();assert active['policy']['schema']=='routine-development-policy-v4'
+ gate=c.load(R/'.local/validation/reviewer-profile-protected-final.json');assert gate['status']=='passed' and gate['complete'] and gate['inputs_unchanged']
+ order=PLAN['qwen_order'] if kind=='qwen' else PLAN['alternate_order'];profile='local-qwen-review-qualified-v1' if kind=='qwen' else 'local-gpt-oss-20b-review-v1';config=active['policy']['local']['provider_profiles'][profile]['provider'];folder=O/('qualified-'+kind);assert not folder.exists(),'Never replay a packet';folder.mkdir();before=await qualify();prior.used=0
+ inputs=c.load(O/'grant-inputs.json');scope=prior.SourceScope.observe(root=resolve_path(R),repository=Repository(RepositoryId.parse(inputs['repository'])),addresses=tuple(RepositoryResourceAddress(x) for x in inputs['inputs']),maximum_resource_bytes=32768)
+ corpus=prior.realize_repository_text_corpus(snapshot=scope.snapshot,definition=prior.define_repository_text_corpus(discovery=prior.discover_repository_resource_addresses(repository=Repository(scope.snapshot.repository_id),root=scope.root,requested_addresses=tuple(RepositoryResourceAddress(x) for x in inputs['inputs']),maximum_resource_count=32,maximum_traversal_entry_count=512),selected_addresses=tuple(RepositoryResourceAddress(x) for x in inputs['inputs'])));index=prior.build_source_search_index(scope.snapshot,corpus=corpus)
+ limits={**active['policy']['local']['provider_profiles'][profile]['budgets'],'model_calls':8,'total_output_tokens':65536,'reads':4,'checks':0,'delegations':0}
+ grant_scope={'subject':'calibration:reviewer-model-qualified-'+kind,'plan_sha256':frozen['sha256'],'repository':inputs['repository'],'actor':'reviewer-model:'+kind,'role':'reviewer','roles':[],'purpose':'role-evaluation','profile':profile,'inputs':inputs['inputs'],'tools':['read_source','submit_review_proposal'],'checks':{},'private_oracle':False,'budgets':limits}
+ grant=await cycle.routine.local.authorize(active['sha256'],grant_scope,assessment=c.assess('Explicitly enrolled frozen model comparison, public inputs only; no source/private oracle/native attempts or service effects delegated.'),provider=before);prior.put(folder/'grant.json',grant)
+ async def guard():
+  cycle.routine.local.check(grant['reference']);scope.check_current()
+  for n,h in frozen['packet']['files'].items():assert c.h(O/n)==h,n
+ rows=[];trials=[];seen=set();timer=Stopwatch()
+ for variant,case,rep in order:
+  name=f'{variant}-{case}-r{rep}';p=c.load(O/'qualified-packets.json')[name];p['policy']['source']=grant_scope['actor'];p['policy']['actor']=grant_scope['actor'];messages=initial(p);refs=dict(p['subject']['references']);claimed=set();reads=0;trial=folder/name;trial.mkdir();capture=prior.Capture(trial);client=adapter.LlamaCppInteraction(endpoint=config['endpoint'],model=config['model'],source=InteractionSource(grant_scope['actor']));result={'trial':name,'case':case,'variant':variant,'rep':rep,'proposal':None,'terminal':None}
+  for turn in (1,2):
+   await guard();await qualify();req=original_request(p,[*messages,PromptMessage('user',PHASES[turn-1])],turn);step=trial/str(turn);step.mkdir();body=json.dumps(client._request_payload(req),separators=(',',':')).encode();
+   if turn==1:assert hashlib.sha256(body).hexdigest()==next(x['wire_sha256'] for x in c.load(O/'qualified-initial-requests.json') if x['trial']==name)
+   prior.put(step/'request.json',body);prior.put(step/'model-request.json',asdict(req));prior.put(step/'memory-before.json',await prior.memory());prior.put(step/'intent.json',{'at':str(Timestamp.now()),'grant':grant['reference'],'wire_sha256':hashlib.sha256(body).hexdigest()});reader=adapter._read_http_response;captured=[];measured={};start=len(cycle.routine.local.records(grant['reference']))
+   async def capture_http(stream):
+    status,raw=await reader(stream);assert len(raw)<=65536;prior.put(step/'response-body.json',raw);prior.put(step/'http.json',{'status':status,'sha256':hashlib.sha256(raw).hexdigest()});captured.append(raw);return status,raw
+   async def measure(value):
+    adapter._read_http_response=reader
+    try:count=await client.count_input_tokens(value)
+    finally:adapter._read_http_response=capture_http
+    measured['input_tokens']=count;return count
+   clock=Stopwatch();response=None;error=None;adapter._read_http_response=capture_http
+   try:response=await cycle.routine.local.interact(grant['reference'],req,interaction=client,qualify=qualify,measure=measure)
+   except Exception as ex:error={'type':type(ex).__name__,'message':str(ex)}
+   finally:adapter._read_http_response=reader
+   prior.put(step/'memory-after.json',await prior.memory());entries=cycle.routine.local.records(grant['reference'])[start:];prior.put(step/'entries.json',entries);raw=json.loads(captured[0]) if captured else {};row={'trial':name,'turn':turn,'seconds':clock.elapsed.total_seconds,'input_tokens':measured.get('input_tokens'),'usage':raw.get('usage'),'finish_reason':raw.get('choices',[{}])[0].get('finish_reason'),'consumed':any(x['operation']=='model' for x in entries),'error':error,'read_completed':False}
+   if response is None:result['terminal']='unknown-or-failed';result['error']=error
+   else:
+    prior.put(step/'normalized.json',asdict(response))
+    try:
+     ids=[x.provider_call_id for x in response.tool_calls];assert not seen.intersection(ids);seen.update(ids)
+     if response.termination==ModelTermination.OUTPUT_LIMIT:result['terminal']='output-limit-censored'
+     elif len(response.tool_calls)==1 and response.tool_calls[0].name==delivery.NAME:
+      result['proposal']=json.loads(response.tool_calls[0].arguments_json)
+      try:result['admitted_conclusion']=delivery.conclusion(p,asdict(req),asdict(response),refs,claimed);result['admission']='admitted'
+      except Exception as ex:result['admission']=type(ex).__name__+': '+str(ex)
+      result['terminal']='proposal returned'
+     elif turn==1 and len(response.tool_calls)==1 and response.tool_calls[0].name=='read_source':
+      arg=read_request(response.tool_calls[0].arguments_json,index=index,purpose='Independent public review',maximum_bytes=32768,by_unit=False);selection=select_source_read(arg);assert not isinstance(selection,SourceReadRefusal) and str(arg.unit.resource.address) in p['policy']['read_paths'] and len(selection.text.encode())<=4096
+      entry=cycle.routine.local.enter(grant['reference'],'read',{'path':str(arg.unit.resource.address),'maximum_bytes':4096,'call':asdict(response.tool_calls[0])})
+      try:
+       reads=await acquire(response,req,scope=scope,index=index,reads=reads,budgets=p['policy']['budgets'],messages=messages,references=refs,claimed=claimed,capture=capture,guard=guard);cycle.routine.local.complete(grant['reference'],entry,{'completed':True,'identity':refs['read:'+str(reads)]});row['read_completed']=True
+      except Exception as ex:cycle.routine.local.complete(grant['reference'],entry,{'error':str(ex)},outcome='unknown-or-failed');result['unknown_tool_effects']=True;raise
+     else:raise ValueError('No supported native Tool or proposal')
+    except Exception as ex:result['terminal']='known protocol failure';result['error']={'type':type(ex).__name__,'message':str(ex)}
+   rows.append(row);prior.put(step/'result.json',row);print(json.dumps(row),flush=True)
+   if result['terminal']:break
+  if not result['terminal']:result['terminal']='finite budget exhausted'
+  prior.put(trial/'trial-result.json',result);trials.append(result)
+  if result['terminal']=='unknown-or-failed' or result.get('unknown_tool_effects'):break
+  # Unknown source effects are visible in the authority ledger and block the next entry.
+ prior.put(folder/'summary.json',{'frozen_sha256':frozen['sha256'],'policy_version':active['sha256'],'grant':grant['reference'],'trials':trials,'rows':rows,'seconds':timer.elapsed.total_seconds,'operator_approvals_for_run':0,'provider_after':await qualify()});print(json.dumps({'complete':kind,'calls':sum(r['consumed'] for r in rows)}),flush=True)
+
+if __name__=='__main__':
+ if sys.argv[1]=='freeze':freeze()
+ elif sys.argv[1]=='qwen':
+  async def q():return (await c.provider(c.WorkCycle(R)))[0]
+  asyncio.run(batch('qwen',q))

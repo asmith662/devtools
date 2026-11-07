@@ -1,5 +1,22 @@
 # Documentation Map
 
+[llama.cpp transport repair and GPT-OSS qualification](research/llama-transport-gpt-oss-qualification.md)
+records bounded HTTP diagnostics, the exact native-format failure mechanism and
+resource conditions for further reviewer qualification.
+Its capacity follow-up records process/pool attribution and the precise
+operator-owned remediation needed before a safe serving transition.
+
+[Reviewer-model comparison](research/reviewer-model-comparison.md) distinguishes
+factual judgments, native Tool delivery, strict admission, output truncation and
+server-native formatting failure across 22 genuine generations. It records the
+activated bounded enrollment, preserved negative evidence and restored Qwen
+service; neither tested reviewer is promoted.
+
+[Bounded reviewer-provider enrollment](development/reviewer-provider-enrollment.md)
+documents the approved v4 local-profile amendment, separate native authority and
+exceptional sequential serving scope. Activation and measured model accuracy
+remain distinct claims.
+
 [Evidence-verified reviewer qualification](research/reviewer-evidence-verification-results.md)
 records seven genuine standing-authorized generations after protected publication.
 Verified public outputs withdraw two false leads, but the enhanced reviewer still

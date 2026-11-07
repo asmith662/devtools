@@ -1,0 +1,21 @@
+"""Apply the genuine exact operator decision after final committed-input validation."""
+import asyncio,json,sys,hashlib
+from pathlib import Path
+sys.path.insert(0,str(Path.cwd()));sys.path.insert(0,str(Path(__file__).parent))
+from prepare import c,R,O
+from scripts.validation.evidence import inputs
+from scripts.backlog.intake import _digest
+
+async def main():
+ cycle=c.WorkCycle(R);proposal=c.load(O/'reviewer-enrollment-proposal.json');response=c.load(O/'operator-response.json');assert proposal['sha256']==_digest(proposal['scope'])=='9722f98db396dc350bfed68c057a545e1eacfe0ebe44e62cb66e6ec88f189d1f';assert response['actual_user_response']=='+acitivate' and response['scope_sha256']==proposal['sha256'];assert not (O/'activation.json').exists()
+ gatepath=R/'.local/validation/reviewer-profile-protected-recovered.json';gate=c.load(gatepath);assert gate['status']=='passed' and gate['complete'] and gate['inputs_unchanged'];assert gate['head']==await c.git(R,'rev-parse','HEAD');current=await asyncio.to_thread(inputs,R);assert gate['before']['sha256']==current['sha256'];assert not await c.git(R,'diff','--name-only') and not await c.git(R,'diff','--cached','--name-only')
+ old=c.load(O/'policy-history-before.json');assert cycle.routine.active()['sha256']==old['active']
+ for name,h in old['controls'].items():assert c.h(cycle.routine.folder/name)==h
+ policy=c.load(R/'docs/development/routine-reviewer-policy.json');assert policy['provider']==cycle.routine.active()['policy']['provider'] and policy['output_tokens']==cycle.routine.active()['policy']['output_tokens'];reference='codex-session:operator-response:+acitivate:reviewer-enrollment:'+proposal['sha256']
+ def approved(request):return request['operation']=='routine-activate' and request['control']['policy']==policy and request['control']['reference']==reference and response['actual_user_response']=='+acitivate'
+ activation=await cycle.routine.control('activate',reference=reference,policy=policy,authorize=approved)
+ for name,h in old['controls'].items():assert c.h(cycle.routine.folder/name)==h
+ c.save(O/'activation.json',{'control':activation,'operator_response':response,'scope_sha256':proposal['sha256'],'protected_receipt':{'path':str(gatepath.relative_to(R)),'sha256':c.h(gatepath),'head':gate['head'],'seconds':gate['seconds']},'historical_controls_preserved':old['controls']})
+ final={k:gate[k] for k in ('schema','mode','at','status','head','exit_code','seconds','timeout_seconds','argv','configured_gate','inputs_unchanged','complete','child_receipt')};final['actual_receipt']={'path':str(gatepath.relative_to(R)),'sha256':c.h(gatepath)};final['interrupted_original']={'path':'.local/reviewer-model-comparison/protected-interruption.json','sha256':c.h(O/'protected-interruption.json'),'meaning':'Original run terminated without complete result; this final qualification references the new fresh recovered run, not a pass for the original run.'};c.save(R/'.local/validation/reviewer-profile-protected-final.json',final)
+ print(json.dumps({'activated':activation['sha256'],'schema':policy['schema'],'historical_controls_unchanged':True,'protected_status':gate['status'],'per_run_approvals':0}))
+if __name__=='__main__':asyncio.run(main())

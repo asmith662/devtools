@@ -1,0 +1,25 @@
+{
+  "trial": "gpt-oss-native-C02-r1",
+  "case": "C02",
+  "variant": "gpt-oss-native",
+  "rep": 1,
+  "proposal": {
+    "candidate_sha256": "b2d08c895747382345f9f276dda3062a74a6157aab99f7e919459aee2772f92f",
+    "conclusion": {
+      "assessed_obligations": [
+        "current-owner"
+      ],
+      "disposition": "accept",
+      "evidence": [
+        "public-C02"
+      ],
+      "findings": [],
+      "outstanding": [],
+      "requests": [],
+      "summary": "The candidate implementation of MarkdownFile correctly preserves attached hash suffixes while treating separated closing hash runs as terminators. The public test suite for heading title extraction passes, confirming compliance with the public contract. No evidence of contract violation or regression is observed. Remaining uncertainty is limited to potential edge cases not covered by the public tests, but the regex logic aligns with the specification and is unlikely to produce hidden failures."
+    },
+    "subject_sha256": "0ad4701aa9cc5a82ed09c0e09bc68b3f4e5890986c3570f8a5f787f4b3c2328a"
+  },
+  "terminal": "proposal returned",
+  "admission": "ValueError: Review cites unavailable evidence"
+}

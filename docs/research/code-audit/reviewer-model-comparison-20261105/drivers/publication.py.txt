@@ -1,0 +1,54 @@
+import json,hashlib,sys
+from pathlib import Path
+sys.path.insert(0,str(Path.cwd()));sys.path.insert(0,str(Path('.local/reviewer-model-comparison').absolute()))
+from prepare import c,R,O
+from scripts.backlog.intake import _digest
+from devtools.core.time import Timestamp
+from devtools.resources.filesystem import BinaryFile,write
+from devtools.core.paths import resolve_path
+D=R/'docs/research/code-audit/reviewer-model-comparison-20261105'
+assert not (D/'manifest.json').exists(),'Completed publication must be reconciled, never overwritten'
+D.mkdir(exist_ok=True)
+def copy(src,dst):
+ data=src.read_bytes();target=D/dst;target.parent.mkdir(parents=True,exist_ok=True)
+ if target.exists():assert target.read_bytes()==data,('Existing partial copy differs',dst);return
+ write(BinaryFile(resolve_path(target),data),overwrite=False)
+def save(dst,data):
+ target=D/dst;target.parent.mkdir(parents=True,exist_ok=True)
+ if target.exists():assert c.load(target)==data,('Existing partial record differs',dst);return
+ c.save(target,data)
+copy(R/'docs/research/code-audit/reviewer-evidence-20261105/.gitattributes','.gitattributes')
+root_files=['frozen.json','plan.json','grader-only.json','source-identity.json','grant-inputs.json','initial-requests.json','thinking-render-control.json','public-observations.json','public-check-grant.json','baseline.txt','C01/candidate.txt','C01/public-result.json','C02/candidate.txt','C02/public-result.json','production-inputs.json','provider-before.json','props-before.json','initial-scores.json','scores.json','http-status-offline-diagnostic.json','server-output-diagnostic.json','reviewer-enrollment-proposal.json','operator-response.json','activation.json','owner-publication.json','policy-history-before.json','gpt-oss-artifact.json','gpt-oss-artifact-at-entry.json','hardware-current.json','serving-intent.json','qwen-paused.json','gpt-oss-service.json','gpt-oss-props.json','gpt-oss-rendered-initial.json','gpt-oss-final-logs.json','gpt-oss-stopped.json','qwen-restored.json','qualified-plan.json','qualified-packets.json','qualified-initial-requests.json','qualified-frozen.json','qualified-frozen-v2.json','qualified-frozen-v3.json','serving-frozen.json','serving-frozen-v2.json','serving-frozen-v3.json','preflight-reconciliation.json','protected-interruption.json','preflight.log','preflight-finish.log','live-progress.log','qualified-qwen-progress.log','qualified-qwen-stderr.log','resumed-qwen-progress.log','resumed-qwen-stderr.log','alternate-progress.log','alternate-stderr.log']
+for name in root_files:copy(O/name,name)
+for p in sorted(O.glob('gpt-oss-qualification-*.json')):
+ data=c.load(p);assert not any(any(word in e.partition('=')[0].lower() for word in ('secret','password','api_key','access_token')) for e in data['container']['Config']['Env']);copy(p,'provider-qualification/'+p.name)
+drivers=['prepare.py','run.py','qualified.py','qualified-v1-preflight.txt','qualified-v2-executed.txt','resume_received.py','alternate.py','alternate-v1-preflight.txt','alternate-v2-preflight.txt','activate.py','protected.py','protected-recovered.py','summarize.py','grade_initial.py','preparation-original.txt']
+for name in drivers:copy(O/name,'drivers/'+(name+'.txt' if name.endswith('.py') else name))
+for folder in ('execution','qualified-qwen','qualified-qwen-resumed','qualified-gpt-oss'):
+ for src in sorted((O/folder).rglob('*')):
+  if src.is_file():copy(src,folder+'/'+str(src.relative_to(O/folder)).replace('\\','/'))
+# Exact predecessor byte correspondence, including the faulty executed driver.
+aliases={}
+for name,driver in [('frozen.json',None),('qualified-frozen.json','qualified-v1-preflight.txt'),('qualified-frozen-v2.json','qualified-v2-executed.txt'),('qualified-frozen-v3.json','qualified.py')]:
+ f=c.load(O/name);assert _digest(f['packet'])==f['sha256'];mapping={}
+ for src,h in f['packet']['files'].items():
+  path=O/(driver if src=='qualified.py' and driver else src);assert c.h(path)==h,(name,src);mapping[src]={'source_copy':str(path.relative_to(O)).replace('\\','/'),'sha256':h}
+ aliases[name]={'sha256':f['sha256'],'files':mapping}
+save('frozen-correspondence.json',aliases)
+cycle=c.WorkCycle(R)
+def ledger(grant):
+ rows=cycle.routine.local.records(grant['reference']);folder=cycle.routine.folder/'local'/grant['decision']['sha256'];results={p.name:cycle.routine.load(p,'local-result') for p in sorted(folder.glob('*-result.json'))};assert {e['sha256']+'-result.json' for e in rows if e['operation']!='delegate'}<=set(results);return {'grant':grant,'entries':rows,'results':results}
+authority={'activation_at':c.load(O/'activation.json')['control']['at'],'active_version':cycle.routine.active()['sha256'],'native_policy_unchanged':True,'per_run_approvals':0,'exceptional_enrollment':'One actual operator response and existing control activation; see activation.json. Serving effects use that exact separate scope, not inference permission.','public_checks':ledger(c.load(O/'public-check-grant.json')),'initial_parent':ledger(c.load(O/'execution/parent-grant.json')),'initial_children':{n:ledger(c.load(O/'execution'/f'{n}-grant.json')) for n in ('off','on')},'higher_qwen':ledger(c.load(O/'qualified-qwen/grant.json')),'alternate':ledger(c.load(O/'qualified-gpt-oss/grant.json'))}
+assert sum(e['operation']=='model' for e in authority['higher_qwen']['entries'])==5
+assert sum(e['operation']=='model' for e in authority['alternate']['entries'])==5
+assert list(authority['alternate']['results'].values())[-1]['outcome'] in {'returned','unknown-or-failed'}
+save('authority.json',authority)
+# Index actual captures, retaining raw bytes in files rather than duplicate dumps.
+calls=[]
+for folder in ('execution','qualified-qwen','qualified-qwen-resumed','qualified-gpt-oss'):
+ for p in sorted((O/folder).rglob('request.json')):
+  rel=p.parent.relative_to(O);row=c.load(p.parent/'result.json');calls.append({'capture':str(rel).replace('\\','/'),'result':row,'request_sha256':c.h(p),'response_sha256':c.h(p.parent/'response-body.json') if (p.parent/'response-body.json').exists() else None,'response_missing_reason':None if (p.parent/'response-body.json').exists() else 'Adapter rejected HTTP framing before complete-response capture; server error and unparsed output retained separately.'})
+assert len(calls)==22 and sum(x['result']['consumed'] for x in calls)==22;save('calls.json',calls)
+gate=c.load(R/'.local/validation/reviewer-profile-protected-recovered.json');child=Path(gate['child_receipt']);phases=c.load(child)
+save('validation.json',{'implementation_commit':gate['head'],'protected':{k:gate[k] for k in ('schema','status','head','exit_code','seconds','timeout_seconds','argv','configured_gate','inputs_unchanged','complete')},'complete_local_receipts':{'protected':str((R/'.local/validation/reviewer-profile-protected-recovered.json').relative_to(R)),'sha256':c.h(R/'.local/validation/reviewer-profile-protected-recovered.json'),'child_sha256':c.h(child),'phase_count':len(phases['phases']),'collection_errors':phases['collection_errors']},'passed':4468,'skipped_opt_in':2,'production_branch_coverage_percent':100,'focused_development':63,'stable_focused':12,'static':{'maintained_ruff':'passed','maintained_format_files':746,'strict_default_mypy_files':646,'strict_explicit_owner_mypy_files':5,'layout':'passed'},'broad_historical_ruff':'31349 errors from traversing retained experiments; no archival normalization. Full local logs retained, maintained scope passed.','interrupted_entry':c.load(O/'protected-interruption.json'),'post_experiment':'No executable production changes after gate; evidence-only checks follow, no comprehensive rerun.'})
+print(json.dumps({'files_so_far':sum(p.is_file() for p in D.rglob('*')),'raw_model_calls':len(calls),'bytes':sum(p.stat().st_size for p in D.rglob('*') if p.is_file())}))

@@ -1,0 +1,85 @@
+{
+  "reference": "routine-v1:26b93f4ae7ca8dcfbf228f62dd0ffa4ea94057cf953e529e2f7db61e27f46978:bd2094a59fae6b01703e7b7e4783936aff5a1bd9f6956be217c02d8da819af9e",
+  "decision": {
+    "schema": "backlog-routine-decision-v1",
+    "policy_version": "26b93f4ae7ca8dcfbf228f62dd0ffa4ea94057cf953e529e2f7db61e27f46978",
+    "subject": "calibration:reviewer-model-comparison",
+    "subjects": [
+      "calibration:reviewer-model-comparison"
+    ],
+    "kind": "local",
+    "request": {
+      "operation": "authorize-routine-local",
+      "scope": {
+        "subject": "calibration:reviewer-model-comparison",
+        "plan_sha256": "17942161008a09b9f1084d96f11e3834bda36f01a04e6e215bec54d00921f284",
+        "repository": "5d0bac37-b85a-49af-8c36-b2b87e9c6e2a",
+        "actor": "reviewer-model:on",
+        "role": "reviewer",
+        "roles": [],
+        "purpose": "role-evaluation",
+        "profile": "local-qwen-evaluation-v1",
+        "inputs": {
+          ".local/reviewer-model-comparison/C01/candidate.txt": "573bafe2fb7fa16fc824bdee7be5fe99539220d4f1c145f726c215093ca2227c",
+          ".local/reviewer-model-comparison/C01/public-result.json": "0abc524df8129e0c3a16c1eadf39660bfc22b74e3105f4301dc1e907afd3c5ca",
+          ".local/reviewer-model-comparison/C02/candidate.txt": "f7923b67f624e5c598eed5e0fdb4e38cc3b2e90db67d194cd369bb82f72f6bb0",
+          ".local/reviewer-model-comparison/C02/public-result.json": "1a8dc53d6c055ff50c5d1b83d5052b344c087f337a73a413960be09d73e9fee1",
+          ".local/reviewer-model-comparison/baseline.txt": "bf8e902178301bd59e4d281a2c05914b87ed84ef8c6f03e8dbbe8fe650b15f42",
+          ".local/reviewer-model-comparison/plan.json": "eb0d263f99024f1a2f30dc129b30793d80c4abd7f0028973e29c05e3fbd1a825",
+          "tests/scripts/backlog/review/public_probe.py": "420e351f9a78986d36582b27f78c977f2bf608667ec76c2bdaec0b2b136b48de"
+        },
+        "tools": [
+          "read_source",
+          "submit_review_proposal"
+        ],
+        "checks": {},
+        "private_oracle": false,
+        "budgets": {
+          "model_calls": 8,
+          "input_tokens": 16384,
+          "output_tokens": 2048,
+          "total_output_tokens": 16384,
+          "reads": 4,
+          "source_bytes": 32768,
+          "checks": 0,
+          "call_seconds": 120,
+          "wall_seconds": 2400,
+          "capture_bytes": 2000000,
+          "delegations": 0,
+          "prompt_bytes": 131072,
+          "response_bytes": 65536
+        }
+      },
+      "parent": "routine-v1:26b93f4ae7ca8dcfbf228f62dd0ffa4ea94057cf953e529e2f7db61e27f46978:abfd469283c663fbe05d616e7688b865c01aa1a080810699e0367cbe9dc30fbd",
+      "source_snapshot": "63132e1457213f6647131ab952f43aa9211fca635b8a763a16ff24b441880a55",
+      "parent_entry": "17209aae62a3ed7dccd28d12bfbe13874235b72cd9ebb403dc9f215b4e743e19",
+      "grant": {
+        "expires_at": "2026-11-06T04:09:54.792349+00:00"
+      }
+    },
+    "assessment": {
+      "reference": "Frozen paired reviewer evaluation: thinking false/true, public source and actual-vs-expected results; private grader excluded. No edits, native attempts, provider or service changes.",
+      "architecture": false,
+      "security": false,
+      "destructive": false,
+      "secrets": false,
+      "paid": false,
+      "service_change": false,
+      "validation_relaxation": false
+    },
+    "provider": {
+      "configuration": {
+        "endpoint": "http://127.0.0.1:8080",
+        "model": "qwen38-local",
+        "image": "7625abb46c6bb8357e214f949b409a152c0944228e5a653fbab112f98ad2de7e",
+        "artifact_sha256": "40fac4050e940397dbf13087afd50f4734a11805bf9d65ef8ddd7483470e6199",
+        "context_tokens": 65536
+      },
+      "healthy": true,
+      "idle": true
+    },
+    "at": "2026-11-06T01:09:55.382403+00:00",
+    "expires_at": "2026-11-06T04:09:54.792349+00:00",
+    "sha256": "bd2094a59fae6b01703e7b7e4783936aff5a1bd9f6956be217c02d8da819af9e"
+  }
+}

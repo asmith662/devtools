@@ -1,0 +1,141 @@
+{
+  "frozen_grader_sha256": "5ecb3df79edeb91eb8f2c8a5d68483aee91ab3f20d414cab7f5e7baefa5190be",
+  "trials": [
+    {
+      "trial": "off-C01-r1",
+      "case": "C01",
+      "thinking": false,
+      "terminal": "proposal returned",
+      "raw_recommendation": "reject",
+      "strict_admission": "admitted",
+      "expected_factual_recommendation": "reject",
+      "factual_correct": true,
+      "unsupported_blocking_findings": 0,
+      "grounding": "Matches authenticated public observations and task requirement; complete behavior outside the fixed inputs is not established."
+    },
+    {
+      "trial": "on-C02-r1",
+      "case": "C02",
+      "thinking": true,
+      "terminal": "output-limit-censored",
+      "raw_recommendation": null,
+      "strict_admission": null,
+      "expected_factual_recommendation": "accept",
+      "factual_correct": null,
+      "unsupported_blocking_findings": 0,
+      "grounding": "Output-limit censored, no complete recommendation"
+    },
+    {
+      "trial": "off-C02-r1",
+      "case": "C02",
+      "thinking": false,
+      "terminal": "proposal returned",
+      "raw_recommendation": "accept",
+      "strict_admission": "ValueError: Acceptance proposal has incomplete obligations or blocking risks",
+      "expected_factual_recommendation": "accept",
+      "factual_correct": true,
+      "unsupported_blocking_findings": 0,
+      "grounding": "Matches authenticated public observations and task requirement; complete behavior outside the fixed inputs is not established."
+    },
+    {
+      "trial": "on-C01-r1",
+      "case": "C01",
+      "thinking": true,
+      "terminal": "output-limit-censored",
+      "raw_recommendation": null,
+      "strict_admission": null,
+      "expected_factual_recommendation": "reject",
+      "factual_correct": null,
+      "unsupported_blocking_findings": 0,
+      "grounding": "Output-limit censored, no complete recommendation"
+    },
+    {
+      "trial": "on-C01-r2",
+      "case": "C01",
+      "thinking": true,
+      "terminal": "output-limit-censored",
+      "raw_recommendation": null,
+      "strict_admission": null,
+      "expected_factual_recommendation": "reject",
+      "factual_correct": null,
+      "unsupported_blocking_findings": 0,
+      "grounding": "Output-limit censored, no complete recommendation"
+    },
+    {
+      "trial": "off-C02-r2",
+      "case": "C02",
+      "thinking": false,
+      "terminal": "proposal returned",
+      "raw_recommendation": "reject",
+      "strict_admission": "admitted",
+      "expected_factual_recommendation": "accept",
+      "factual_correct": false,
+      "unsupported_blocking_findings": 1,
+      "grounding": "Contradicted regex hypothesis for # C#  ##"
+    },
+    {
+      "trial": "on-C02-r2",
+      "case": "C02",
+      "thinking": true,
+      "terminal": "output-limit-censored",
+      "raw_recommendation": null,
+      "strict_admission": null,
+      "expected_factual_recommendation": "accept",
+      "factual_correct": null,
+      "unsupported_blocking_findings": 0,
+      "grounding": "Output-limit censored, no complete recommendation"
+    },
+    {
+      "trial": "off-C01-r2",
+      "case": "C01",
+      "thinking": false,
+      "terminal": "proposal returned",
+      "raw_recommendation": "reject",
+      "strict_admission": "admitted",
+      "expected_factual_recommendation": "reject",
+      "factual_correct": true,
+      "unsupported_blocking_findings": 0,
+      "grounding": "Matches authenticated public observations and task requirement; complete behavior outside the fixed inputs is not established."
+    }
+  ],
+  "post_hoc_claim_check": [
+    {
+      "source": "baseline.txt",
+      "sha256": "a5510a1b30945060c3d1438f0832cc8ffe5d9ee6248d5e24bd66feea6c5fb645",
+      "input": "# C#  ##",
+      "actual": "C#",
+      "expected_public_contract": "C#",
+      "method": "Host-only post-hoc literal-regex adjudication of the model-invented control finding; not frozen acceptance and not disclosed to later actors."
+    },
+    {
+      "source": "C01/candidate.txt",
+      "sha256": "ea9619b09ebaca244b358179fecc7c952be37e07edac66ba5171f19b3af3b119",
+      "input": "# C#  ##",
+      "actual": "C#",
+      "expected_public_contract": "C#",
+      "method": "Host-only post-hoc literal-regex adjudication of the model-invented control finding; not frozen acceptance and not disclosed to later actors."
+    },
+    {
+      "source": "C02/candidate.txt",
+      "sha256": "b2d08c895747382345f9f276dda3062a74a6157aab99f7e919459aee2772f92f",
+      "input": "# C#  ##",
+      "actual": "C#",
+      "expected_public_contract": "C#",
+      "method": "Host-only post-hoc literal-regex adjudication of the model-invented control finding; not frozen acceptance and not disclosed to later actors."
+    }
+  ],
+  "totals": {
+    "off": {
+      "calls": 8,
+      "input_tokens": 74837,
+      "output_tokens": 4178,
+      "seconds": 281.521347
+    },
+    "on": {
+      "calls": 4,
+      "input_tokens": 33809,
+      "output_tokens": 8192,
+      "seconds": 404.305228
+    }
+  }
+}

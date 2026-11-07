@@ -1,0 +1,108 @@
+{
+  "C01": {
+    "name": "public-C01",
+    "source": "candidate",
+    "version": "573bafe2fb7fa16fc824bdee7be5fe99539220d4f1c145f726c215093ca2227c",
+    "resource": ".local/reviewer-model-comparison/C01/candidate.txt",
+    "definition": {
+      "name": "public-C01",
+      "argv": [
+        "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+        "-B",
+        "-c",
+        "import io,json,contextlib,sys\nfrom tests.scripts.backlog.review.public_probe import main\ncapture=io.StringIO()\nwith contextlib.redirect_stdout(capture):main()\nobserved=json.loads(capture.getvalue())\nexpected={'# C#':'C#','# C# #':'C#','# Title #':'Title','# ##':''}\ncases=[{'input':v['input'],'expected':expected[v['input']],'actual':v['observed_title'],'passed':v['observed_title']==expected[v['input']]} for v in observed['outputs']]\npassed=all(v['passed'] for v in cases)\nprint(json.dumps({'public_contract':'Attached hashes are literal; separated terminal closing hashes are removed, including empty headings. Fixed public inputs only.','producer':observed['producer'],'cases':cases,'passed':passed}))\nraise SystemExit(0 if passed else 1)\n",
+        ".local/reviewer-model-comparison/C01/candidate.txt"
+      ],
+      "cwd": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools",
+      "timeout_seconds": 15.0,
+      "stdin_hex": null,
+      "environment": null,
+      "success_exit_codes": [
+        0
+      ],
+      "inputs": {
+        ".local/reviewer-model-comparison/C01/candidate.txt": "573bafe2fb7fa16fc824bdee7be5fe99539220d4f1c145f726c215093ca2227c",
+        ".local/reviewer-model-comparison/C02/candidate.txt": "f7923b67f624e5c598eed5e0fdb4e38cc3b2e90db67d194cd369bb82f72f6bb0",
+        "tests/scripts/backlog/review/public_probe.py": "420e351f9a78986d36582b27f78c977f2bf608667ec76c2bdaec0b2b136b48de"
+      }
+    },
+    "definition_sha256": "8a017a8061413eea83fc9dbc5964051f9558ad11d5dca5562accfaa8bab1a126",
+    "receipt": "8b26b5ec28a8f459081504a75cd15da8661ffbbaaae03f2396efeb9e765708b1",
+    "observation": {
+      "name": "public-C01",
+      "argv": [
+        "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+        "-B",
+        "-c",
+        "import io,json,contextlib,sys\nfrom tests.scripts.backlog.review.public_probe import main\ncapture=io.StringIO()\nwith contextlib.redirect_stdout(capture):main()\nobserved=json.loads(capture.getvalue())\nexpected={'# C#':'C#','# C# #':'C#','# Title #':'Title','# ##':''}\ncases=[{'input':v['input'],'expected':expected[v['input']],'actual':v['observed_title'],'passed':v['observed_title']==expected[v['input']]} for v in observed['outputs']]\npassed=all(v['passed'] for v in cases)\nprint(json.dumps({'public_contract':'Attached hashes are literal; separated terminal closing hashes are removed, including empty headings. Fixed public inputs only.','producer':observed['producer'],'cases':cases,'passed':passed}))\nraise SystemExit(0 if passed else 1)\n",
+        ".local/reviewer-model-comparison/C01/candidate.txt"
+      ],
+      "exit_code": 1,
+      "outcome": "failed",
+      "seconds": 0.064656,
+      "passed": false,
+      "inputs_current": true,
+      "stdout": "{\"public_contract\": \"Attached hashes are literal; separated terminal closing hashes are removed, including empty headings. Fixed public inputs only.\", \"producer\": \"_ATX_HEADING_PATTERN text group followed by strip\", \"cases\": [{\"input\": \"# C#\", \"expected\": \"C#\", \"actual\": \"C#\", \"passed\": true}, {\"input\": \"# C# #\", \"expected\": \"C#\", \"actual\": \"C#\", \"passed\": true}, {\"input\": \"# Title #\", \"expected\": \"Title\", \"actual\": \"Title\", \"passed\": true}, {\"input\": \"# ##\", \"expected\": \"\", \"actual\": \"##\", \"passed\": false}], \"passed\": false}\r\n",
+      "stderr": "",
+      "stdout_truncated": false,
+      "stderr_truncated": false,
+      "events_dropped": 0,
+      "stdout_hex": "7b227075626c69635f636f6e7472616374223a202241747461636865642068617368657320617265206c69746572616c3b20736570617261746564207465726d696e616c20636c6f73696e6720686173686573206172652072656d6f7665642c20696e636c7564696e6720656d7074792068656164696e67732e204669786564207075626c696320696e70757473206f6e6c792e222c202270726f6475636572223a20225f4154585f48454144494e475f5041545445524e20746578742067726f757020666f6c6c6f776564206279207374726970222c20226361736573223a205b7b22696e707574223a202223204323222c20226578706563746564223a20224323222c202261637475616c223a20224323222c2022706173736564223a20747275657d2c207b22696e707574223a2022232043232023222c20226578706563746564223a20224323222c202261637475616c223a20224323222c2022706173736564223a20747275657d2c207b22696e707574223a202223205469746c652023222c20226578706563746564223a20225469746c65222c202261637475616c223a20225469746c65222c2022706173736564223a20747275657d2c207b22696e707574223a202223202323222c20226578706563746564223a2022222c202261637475616c223a20222323222c2022706173736564223a2066616c73657d5d2c2022706173736564223a2066616c73657d0d0a",
+      "stderr_hex": ""
+    },
+    "meaning": "Fixed public output only; explanations remain model claims."
+  },
+  "C02": {
+    "name": "public-C02",
+    "source": "candidate",
+    "version": "f7923b67f624e5c598eed5e0fdb4e38cc3b2e90db67d194cd369bb82f72f6bb0",
+    "resource": ".local/reviewer-model-comparison/C02/candidate.txt",
+    "definition": {
+      "name": "public-C02",
+      "argv": [
+        "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+        "-B",
+        "-c",
+        "import io,json,contextlib,sys\nfrom tests.scripts.backlog.review.public_probe import main\ncapture=io.StringIO()\nwith contextlib.redirect_stdout(capture):main()\nobserved=json.loads(capture.getvalue())\nexpected={'# C#':'C#','# C# #':'C#','# Title #':'Title','# ##':''}\ncases=[{'input':v['input'],'expected':expected[v['input']],'actual':v['observed_title'],'passed':v['observed_title']==expected[v['input']]} for v in observed['outputs']]\npassed=all(v['passed'] for v in cases)\nprint(json.dumps({'public_contract':'Attached hashes are literal; separated terminal closing hashes are removed, including empty headings. Fixed public inputs only.','producer':observed['producer'],'cases':cases,'passed':passed}))\nraise SystemExit(0 if passed else 1)\n",
+        ".local/reviewer-model-comparison/C02/candidate.txt"
+      ],
+      "cwd": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools",
+      "timeout_seconds": 15.0,
+      "stdin_hex": null,
+      "environment": null,
+      "success_exit_codes": [
+        0
+      ],
+      "inputs": {
+        ".local/reviewer-model-comparison/C01/candidate.txt": "573bafe2fb7fa16fc824bdee7be5fe99539220d4f1c145f726c215093ca2227c",
+        ".local/reviewer-model-comparison/C02/candidate.txt": "f7923b67f624e5c598eed5e0fdb4e38cc3b2e90db67d194cd369bb82f72f6bb0",
+        "tests/scripts/backlog/review/public_probe.py": "420e351f9a78986d36582b27f78c977f2bf608667ec76c2bdaec0b2b136b48de"
+      }
+    },
+    "definition_sha256": "7ddd065350c1cfe1c6442539eaac958c495b7e35bc865d968b2d68ff483c6967",
+    "receipt": "aa63509f4dd67fc6c25f27c68d2cb4fc97329ba876f4f77247ccba5ca46b78b3",
+    "observation": {
+      "name": "public-C02",
+      "argv": [
+        "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+        "-B",
+        "-c",
+        "import io,json,contextlib,sys\nfrom tests.scripts.backlog.review.public_probe import main\ncapture=io.StringIO()\nwith contextlib.redirect_stdout(capture):main()\nobserved=json.loads(capture.getvalue())\nexpected={'# C#':'C#','# C# #':'C#','# Title #':'Title','# ##':''}\ncases=[{'input':v['input'],'expected':expected[v['input']],'actual':v['observed_title'],'passed':v['observed_title']==expected[v['input']]} for v in observed['outputs']]\npassed=all(v['passed'] for v in cases)\nprint(json.dumps({'public_contract':'Attached hashes are literal; separated terminal closing hashes are removed, including empty headings. Fixed public inputs only.','producer':observed['producer'],'cases':cases,'passed':passed}))\nraise SystemExit(0 if passed else 1)\n",
+        ".local/reviewer-model-comparison/C02/candidate.txt"
+      ],
+      "exit_code": 0,
+      "outcome": "succeeded",
+      "seconds": 0.080659,
+      "passed": true,
+      "inputs_current": true,
+      "stdout": "{\"public_contract\": \"Attached hashes are literal; separated terminal closing hashes are removed, including empty headings. Fixed public inputs only.\", \"producer\": \"_ATX_HEADING_PATTERN text group followed by strip\", \"cases\": [{\"input\": \"# C#\", \"expected\": \"C#\", \"actual\": \"C#\", \"passed\": true}, {\"input\": \"# C# #\", \"expected\": \"C#\", \"actual\": \"C#\", \"passed\": true}, {\"input\": \"# Title #\", \"expected\": \"Title\", \"actual\": \"Title\", \"passed\": true}, {\"input\": \"# ##\", \"expected\": \"\", \"actual\": \"\", \"passed\": true}], \"passed\": true}\r\n",
+      "stderr": "",
+      "stdout_truncated": false,
+      "stderr_truncated": false,
+      "events_dropped": 0,
+      "stdout_hex": "7b227075626c69635f636f6e7472616374223a202241747461636865642068617368657320617265206c69746572616c3b20736570617261746564207465726d696e616c20636c6f73696e6720686173686573206172652072656d6f7665642c20696e636c7564696e6720656d7074792068656164696e67732e204669786564207075626c696320696e70757473206f6e6c792e222c202270726f6475636572223a20225f4154585f48454144494e475f5041545445524e20746578742067726f757020666f6c6c6f776564206279207374726970222c20226361736573223a205b7b22696e707574223a202223204323222c20226578706563746564223a20224323222c202261637475616c223a20224323222c2022706173736564223a20747275657d2c207b22696e707574223a2022232043232023222c20226578706563746564223a20224323222c202261637475616c223a20224323222c2022706173736564223a20747275657d2c207b22696e707574223a202223205469746c652023222c20226578706563746564223a20225469746c65222c202261637475616c223a20225469746c65222c2022706173736564223a20747275657d2c207b22696e707574223a202223202323222c20226578706563746564223a2022222c202261637475616c223a2022222c2022706173736564223a20747275657d5d2c2022706173736564223a20747275657d0d0a",
+      "stderr_hex": ""
+    },
+    "meaning": "Fixed public output only; explanations remain model claims."
+  }
+}
