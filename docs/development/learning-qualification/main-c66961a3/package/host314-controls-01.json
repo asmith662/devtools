@@ -1,0 +1,419 @@
+{
+  "status": "PASS",
+  "cases": [
+    {
+      "family": "classification",
+      "terminal": "STOP",
+      "counts": {
+        "native_fits": 3,
+        "states": 3,
+        "preparations": 3,
+        "squares": 1,
+        "actions": 3,
+        "invocations": 3
+      },
+      "worker_receipts": [
+        {
+          "plan_identity": "4dc732601115c19796ab96a22d07cff5b2dc94898bb9867e2ca0d6ad16420ed5",
+          "executable": "C:\\Users\\recoveryadmin\\AppData\\Roaming\\uv\\python\\cpython-3.12.13-windows-x86_64-none\\python.exe",
+          "site_packages": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools-learning\\.local\\learning-reconciliation\\package\\extra\\Lib\\site-packages",
+          "exit_code": 0,
+          "seconds": 7.481718,
+          "stderr": ""
+        },
+        {
+          "plan_identity": "435090c7fc604c635534151639671a328cc1bd1563c170f111a3219f31a99359",
+          "executable": "C:\\Users\\recoveryadmin\\AppData\\Roaming\\uv\\python\\cpython-3.12.13-windows-x86_64-none\\python.exe",
+          "site_packages": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools-learning\\.local\\learning-reconciliation\\package\\extra\\Lib\\site-packages",
+          "exit_code": 0,
+          "seconds": 7.709207,
+          "stderr": ""
+        },
+        {
+          "plan_identity": "3c519467ac415cf8a12a66a29adf98f305a983adc04adb9ef72c7752b0922097",
+          "executable": "C:\\Users\\recoveryadmin\\AppData\\Roaming\\uv\\python\\cpython-3.12.13-windows-x86_64-none\\python.exe",
+          "site_packages": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools-learning\\.local\\learning-reconciliation\\package\\extra\\Lib\\site-packages",
+          "exit_code": 0,
+          "seconds": 8.055147,
+          "stderr": ""
+        }
+      ],
+      "trace": [
+        {
+          "call_id": "call-1",
+          "model_source": "scripted-learning",
+          "arguments_json": "{\"action\":\"CHECK_SUPPORT\",\"evidence\":[],\"family\":\"classification\",\"method\":null,\"metric\":\"classification.macro_f1:v2\",\"rationale\":\"Use the original acknowledged online observations under the selected finite profile.\",\"role\":\"online\",\"schema_identity\":\"909bc7b86486e39ccfff6f0a2c05ec76a88a8f61b9ffde4dd5b4693b9f96d6b9\",\"source_handle\":\"learning-source:45c89046e4f8b15f15142093c03c21920b44ee85b277098bf33741e8425df561\",\"state_identity\":\"ec793339a65bb69e49042990ac8e739917b1a037657c8c1e9e23c0e9059da00d\",\"task_identity\":\"authored-classification\",\"unit_identity\":\"3165e2c084edfe5c4136c51b2e36e1a408c876f70dad3411ae84f17f130add18\"}",
+          "state_identity": "ec793339a65bb69e49042990ac8e739917b1a037657c8c1e9e23c0e9059da00d",
+          "action": "CHECK_SUPPORT",
+          "method": null,
+          "evidence_identity": "learning-support:893a40b61a4a4dc66d4e65fb8a855471ea37c5d70956a1a31e28f3999ad3d326",
+          "value": null
+        },
+        {
+          "call_id": "call-2",
+          "model_source": "scripted-learning",
+          "arguments_json": "{\"action\":\"EVALUATE\",\"evidence\":[\"learning-support:893a40b61a4a4dc66d4e65fb8a855471ea37c5d70956a1a31e28f3999ad3d326\"],\"family\":\"classification\",\"method\":\"knn7\",\"metric\":\"classification.macro_f1:v2\",\"rationale\":\"Use the original acknowledged online observations under the selected finite profile.\",\"role\":\"online\",\"schema_identity\":\"909bc7b86486e39ccfff6f0a2c05ec76a88a8f61b9ffde4dd5b4693b9f96d6b9\",\"source_handle\":\"learning-source:45c89046e4f8b15f15142093c03c21920b44ee85b277098bf33741e8425df561\",\"state_identity\":\"39ad09a2ee2c7317771fddf65a30a6773acc48f79fd42ff1e967f1e6abdf1c25\",\"task_identity\":\"authored-classification\",\"unit_identity\":\"3165e2c084edfe5c4136c51b2e36e1a408c876f70dad3411ae84f17f130add18\"}",
+          "state_identity": "39ad09a2ee2c7317771fddf65a30a6773acc48f79fd42ff1e967f1e6abdf1c25",
+          "action": "EVALUATE",
+          "method": "knn7",
+          "evidence_identity": "a882cae399a7d2d9f058bfe4a05226a6306a780dfe660a23ba313d266a5b7856",
+          "value": 1.0
+        },
+        {
+          "call_id": "call-3",
+          "model_source": "scripted-learning",
+          "arguments_json": "{\"action\":\"EVALUATE\",\"evidence\":[\"learning-support:893a40b61a4a4dc66d4e65fb8a855471ea37c5d70956a1a31e28f3999ad3d326\",\"a882cae399a7d2d9f058bfe4a05226a6306a780dfe660a23ba313d266a5b7856\"],\"family\":\"classification\",\"method\":\"square-logistic\",\"metric\":\"classification.macro_f1:v2\",\"rationale\":\"Use the original acknowledged online observations under the selected finite profile.\",\"role\":\"online\",\"schema_identity\":\"909bc7b86486e39ccfff6f0a2c05ec76a88a8f61b9ffde4dd5b4693b9f96d6b9\",\"source_handle\":\"learning-source:45c89046e4f8b15f15142093c03c21920b44ee85b277098bf33741e8425df561\",\"state_identity\":\"586eaf6709332c449ca0a260f0ac29755197964d0408142667b6ec962d1b560c\",\"task_identity\":\"authored-classification\",\"unit_identity\":\"3165e2c084edfe5c4136c51b2e36e1a408c876f70dad3411ae84f17f130add18\"}",
+          "state_identity": "586eaf6709332c449ca0a260f0ac29755197964d0408142667b6ec962d1b560c",
+          "action": "EVALUATE",
+          "method": "square-logistic",
+          "evidence_identity": "bb922d39d3cf18d7ca817bb12b93042ac9e410b988961c38d126d80aae262d29",
+          "value": 1.0
+        },
+        {
+          "call_id": "call-4",
+          "model_source": "scripted-learning",
+          "arguments_json": "{\"action\":\"STOP\",\"evidence\":[\"learning-support:893a40b61a4a4dc66d4e65fb8a855471ea37c5d70956a1a31e28f3999ad3d326\",\"a882cae399a7d2d9f058bfe4a05226a6306a780dfe660a23ba313d266a5b7856\",\"bb922d39d3cf18d7ca817bb12b93042ac9e410b988961c38d126d80aae262d29\"],\"family\":\"classification\",\"method\":null,\"metric\":\"classification.macro_f1:v2\",\"rationale\":\"Use the original acknowledged online observations under the selected finite profile.\",\"role\":\"online\",\"schema_identity\":\"909bc7b86486e39ccfff6f0a2c05ec76a88a8f61b9ffde4dd5b4693b9f96d6b9\",\"source_handle\":\"learning-source:45c89046e4f8b15f15142093c03c21920b44ee85b277098bf33741e8425df561\",\"state_identity\":\"3bc11efbfbfaf3c8b0aed1c0c15ce56f38d1f984905da9ccf7af054885941c65\",\"task_identity\":\"authored-classification\",\"unit_identity\":\"3165e2c084edfe5c4136c51b2e36e1a408c876f70dad3411ae84f17f130add18\"}",
+          "state_identity": "3bc11efbfbfaf3c8b0aed1c0c15ce56f38d1f984905da9ccf7af054885941c65",
+          "action": "STOP",
+          "method": null,
+          "evidence_identity": "learning-terminal:3bc11efbfbfaf3c8b0aed1c0c15ce56f38d1f984905da9ccf7af054885941c65",
+          "value": null
+        }
+      ],
+      "parent_predictions": [
+        0,
+        1
+      ],
+      "method": "knn7",
+      "metric": {
+        "value": 1.0
+      }
+    },
+    {
+      "family": "regression",
+      "terminal": "STOP",
+      "counts": {
+        "native_fits": 3,
+        "states": 4,
+        "preparations": 3,
+        "squares": 0,
+        "actions": 4,
+        "invocations": 4
+      },
+      "worker_receipts": [
+        {
+          "plan_identity": "350dd16218222b0414a1f20b3e9843bb3e7ed18877a9525114621d5e9efdc811",
+          "executable": "C:\\Users\\recoveryadmin\\AppData\\Roaming\\uv\\python\\cpython-3.12.13-windows-x86_64-none\\python.exe",
+          "site_packages": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools-learning\\.local\\learning-reconciliation\\package\\extra\\Lib\\site-packages",
+          "exit_code": 0,
+          "seconds": 7.489024,
+          "stderr": ""
+        },
+        {
+          "plan_identity": "e89e69fecd4e05525d992c3d8b6eafeb43dabf321c60eceb5fb3b19a93cde94e",
+          "executable": "C:\\Users\\recoveryadmin\\AppData\\Roaming\\uv\\python\\cpython-3.12.13-windows-x86_64-none\\python.exe",
+          "site_packages": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools-learning\\.local\\learning-reconciliation\\package\\extra\\Lib\\site-packages",
+          "exit_code": 0,
+          "seconds": 7.531456,
+          "stderr": ""
+        },
+        {
+          "plan_identity": "a2e96641b6a36600109bd1d6bc3fe54280894f48636184c8a8ba4b5a22a0a726",
+          "executable": "C:\\Users\\recoveryadmin\\AppData\\Roaming\\uv\\python\\cpython-3.12.13-windows-x86_64-none\\python.exe",
+          "site_packages": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools-learning\\.local\\learning-reconciliation\\package\\extra\\Lib\\site-packages",
+          "exit_code": 0,
+          "seconds": 7.734046,
+          "stderr": ""
+        },
+        {
+          "plan_identity": "341ada54dae453d6ef9871f2daa3cb8eff10048f63a7e4c213bea7be45595866",
+          "executable": "C:\\Users\\recoveryadmin\\AppData\\Roaming\\uv\\python\\cpython-3.12.13-windows-x86_64-none\\python.exe",
+          "site_packages": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools-learning\\.local\\learning-reconciliation\\package\\extra\\Lib\\site-packages",
+          "exit_code": 0,
+          "seconds": 7.169637,
+          "stderr": ""
+        }
+      ],
+      "trace": [
+        {
+          "call_id": "call-1",
+          "model_source": "scripted-learning",
+          "arguments_json": "{\"action\":\"CHECK_SUPPORT\",\"evidence\":[],\"family\":\"regression\",\"method\":null,\"metric\":\"regression.mae:v1\",\"rationale\":\"Use the original acknowledged online observations under the selected finite profile.\",\"role\":\"online\",\"schema_identity\":\"regression-schema-v1:d3eae0b40e81bf01072d3f91b4111da02dbadcc7280a4e84c97be803ea0ccdae\",\"source_handle\":\"learning-source:c821661e850049b0c7e3fc78ba1acae933e8843f28ab9eb16422ec9896321617\",\"state_identity\":\"b29d63251cfffa9b5f0fbf80c3e8a16ab56939c66aef65d8c839c3a5aab16a94\",\"task_identity\":\"authored-regression\",\"unit_identity\":\"a118234c3493577cd4600bde87c79e2ab4ea933b928ac6561b063d9fb4ade06c\"}",
+          "state_identity": "b29d63251cfffa9b5f0fbf80c3e8a16ab56939c66aef65d8c839c3a5aab16a94",
+          "action": "CHECK_SUPPORT",
+          "method": null,
+          "evidence_identity": "learning-support:0b9e92decabb996f7fcf4f3b063ad101879e934d2b663ece0bea7c1c21116a9f",
+          "value": null
+        },
+        {
+          "call_id": "call-2",
+          "model_source": "scripted-learning",
+          "arguments_json": "{\"action\":\"EVALUATE\",\"evidence\":[\"learning-support:0b9e92decabb996f7fcf4f3b063ad101879e934d2b663ece0bea7c1c21116a9f\"],\"family\":\"regression\",\"method\":\"mean\",\"metric\":\"regression.mae:v1\",\"rationale\":\"Use the original acknowledged online observations under the selected finite profile.\",\"role\":\"online\",\"schema_identity\":\"regression-schema-v1:d3eae0b40e81bf01072d3f91b4111da02dbadcc7280a4e84c97be803ea0ccdae\",\"source_handle\":\"learning-source:c821661e850049b0c7e3fc78ba1acae933e8843f28ab9eb16422ec9896321617\",\"state_identity\":\"de0d53485d04bd3484f061d6efa2d4692677feebf03befc25816482065427cb6\",\"task_identity\":\"authored-regression\",\"unit_identity\":\"a118234c3493577cd4600bde87c79e2ab4ea933b928ac6561b063d9fb4ade06c\"}",
+          "state_identity": "de0d53485d04bd3484f061d6efa2d4692677feebf03befc25816482065427cb6",
+          "action": "EVALUATE",
+          "method": "mean",
+          "evidence_identity": "f624b9c55c9a99420c29c92115b637f86fcab45ce68f953459959c2d9107146f",
+          "value": 6.5
+        },
+        {
+          "call_id": "call-3",
+          "model_source": "scripted-learning",
+          "arguments_json": "{\"action\":\"EVALUATE\",\"evidence\":[\"learning-support:0b9e92decabb996f7fcf4f3b063ad101879e934d2b663ece0bea7c1c21116a9f\",\"f624b9c55c9a99420c29c92115b637f86fcab45ce68f953459959c2d9107146f\"],\"family\":\"regression\",\"method\":\"ridge\",\"metric\":\"regression.mae:v1\",\"rationale\":\"Use the original acknowledged online observations under the selected finite profile.\",\"role\":\"online\",\"schema_identity\":\"regression-schema-v1:d3eae0b40e81bf01072d3f91b4111da02dbadcc7280a4e84c97be803ea0ccdae\",\"source_handle\":\"learning-source:c821661e850049b0c7e3fc78ba1acae933e8843f28ab9eb16422ec9896321617\",\"state_identity\":\"397d952b8b622c466c5b141ae4be17e4503bfcabe49809e270c739ce650b7d1b\",\"task_identity\":\"authored-regression\",\"unit_identity\":\"a118234c3493577cd4600bde87c79e2ab4ea933b928ac6561b063d9fb4ade06c\"}",
+          "state_identity": "397d952b8b622c466c5b141ae4be17e4503bfcabe49809e270c739ce650b7d1b",
+          "action": "EVALUATE",
+          "method": "ridge",
+          "evidence_identity": "7cc63e88b4c452d30d82bc8b5e73de8506aa307392fc33ca58abac3b43d82fea",
+          "value": 0.7222222222222225
+        },
+        {
+          "call_id": "call-4",
+          "model_source": "scripted-learning",
+          "arguments_json": "{\"action\":\"EVALUATE\",\"evidence\":[\"learning-support:0b9e92decabb996f7fcf4f3b063ad101879e934d2b663ece0bea7c1c21116a9f\",\"f624b9c55c9a99420c29c92115b637f86fcab45ce68f953459959c2d9107146f\",\"7cc63e88b4c452d30d82bc8b5e73de8506aa307392fc33ca58abac3b43d82fea\"],\"family\":\"regression\",\"method\":\"knn-v2\",\"metric\":\"regression.mae:v1\",\"rationale\":\"Use the original acknowledged online observations under the selected finite profile.\",\"role\":\"online\",\"schema_identity\":\"regression-schema-v1:d3eae0b40e81bf01072d3f91b4111da02dbadcc7280a4e84c97be803ea0ccdae\",\"source_handle\":\"learning-source:c821661e850049b0c7e3fc78ba1acae933e8843f28ab9eb16422ec9896321617\",\"state_identity\":\"6943fc1f1fd16097aa8d85c6400b275d0d18f6d518260c4044243417355ebc97\",\"task_identity\":\"authored-regression\",\"unit_identity\":\"a118234c3493577cd4600bde87c79e2ab4ea933b928ac6561b063d9fb4ade06c\"}",
+          "state_identity": "6943fc1f1fd16097aa8d85c6400b275d0d18f6d518260c4044243417355ebc97",
+          "action": "EVALUATE",
+          "method": "knn-v2",
+          "evidence_identity": "f68ffbed6398f19f5fdf2b049e96478bfb184f00639ccfb7ce6653a75d38505d",
+          "value": 3.5
+        },
+        {
+          "call_id": "call-5",
+          "model_source": "scripted-learning",
+          "arguments_json": "{\"action\":\"STOP\",\"evidence\":[\"learning-support:0b9e92decabb996f7fcf4f3b063ad101879e934d2b663ece0bea7c1c21116a9f\",\"f624b9c55c9a99420c29c92115b637f86fcab45ce68f953459959c2d9107146f\",\"7cc63e88b4c452d30d82bc8b5e73de8506aa307392fc33ca58abac3b43d82fea\",\"f68ffbed6398f19f5fdf2b049e96478bfb184f00639ccfb7ce6653a75d38505d\"],\"family\":\"regression\",\"method\":null,\"metric\":\"regression.mae:v1\",\"rationale\":\"Use the original acknowledged online observations under the selected finite profile.\",\"role\":\"online\",\"schema_identity\":\"regression-schema-v1:d3eae0b40e81bf01072d3f91b4111da02dbadcc7280a4e84c97be803ea0ccdae\",\"source_handle\":\"learning-source:c821661e850049b0c7e3fc78ba1acae933e8843f28ab9eb16422ec9896321617\",\"state_identity\":\"51b2fa7a93e1633f41d53765004d0f8667025cf243d23420cc218c2364d545c7\",\"task_identity\":\"authored-regression\",\"unit_identity\":\"a118234c3493577cd4600bde87c79e2ab4ea933b928ac6561b063d9fb4ade06c\"}",
+          "state_identity": "51b2fa7a93e1633f41d53765004d0f8667025cf243d23420cc218c2364d545c7",
+          "action": "STOP",
+          "method": null,
+          "evidence_identity": "learning-terminal:51b2fa7a93e1633f41d53765004d0f8667025cf243d23420cc218c2364d545c7",
+          "value": null
+        }
+      ],
+      "parent_predictions": [
+        2.1333333333333346,
+        13.68888888888889
+      ],
+      "method": "ridge",
+      "metric": {
+        "value": 0.7222222222222225
+      }
+    },
+    {
+      "family": "classification",
+      "terminal": "STOP",
+      "counts": {
+        "native_fits": 2,
+        "states": 2,
+        "preparations": 2,
+        "squares": 2,
+        "actions": 2,
+        "invocations": 2
+      },
+      "worker_receipts": [
+        {
+          "plan_identity": "7ed452b79f76ed599afd72c1c281f65080f0aae6984d242fb953d044c15ab385",
+          "executable": "C:\\Users\\recoveryadmin\\AppData\\Roaming\\uv\\python\\cpython-3.12.13-windows-x86_64-none\\python.exe",
+          "site_packages": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools-learning\\.local\\learning-reconciliation\\package\\extra\\Lib\\site-packages",
+          "exit_code": 0,
+          "seconds": 7.539293,
+          "stderr": ""
+        },
+        {
+          "plan_identity": "183e10fadbebd43dd82adac34076b8070e5050f254588e0c01200937e05ad2c5",
+          "executable": "C:\\Users\\recoveryadmin\\AppData\\Roaming\\uv\\python\\cpython-3.12.13-windows-x86_64-none\\python.exe",
+          "site_packages": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools-learning\\.local\\learning-reconciliation\\package\\extra\\Lib\\site-packages",
+          "exit_code": 0,
+          "seconds": 7.52108,
+          "stderr": ""
+        }
+      ],
+      "trace": [
+        {
+          "call_id": "call-1",
+          "model_source": "scripted-learning",
+          "arguments_json": "{\"action\":\"CHECK_SUPPORT\",\"evidence\":[],\"family\":\"classification\",\"method\":null,\"metric\":\"classification.macro_f1:v2\",\"rationale\":\"Use the original acknowledged online observations under the selected finite profile.\",\"role\":\"online\",\"schema_identity\":\"909bc7b86486e39ccfff6f0a2c05ec76a88a8f61b9ffde4dd5b4693b9f96d6b9\",\"source_handle\":\"learning-source:45c89046e4f8b15f15142093c03c21920b44ee85b277098bf33741e8425df561\",\"state_identity\":\"ec793339a65bb69e49042990ac8e739917b1a037657c8c1e9e23c0e9059da00d\",\"task_identity\":\"authored-classification\",\"unit_identity\":\"3165e2c084edfe5c4136c51b2e36e1a408c876f70dad3411ae84f17f130add18\"}",
+          "state_identity": "ec793339a65bb69e49042990ac8e739917b1a037657c8c1e9e23c0e9059da00d",
+          "action": "CHECK_SUPPORT",
+          "method": null,
+          "evidence_identity": "learning-support:893a40b61a4a4dc66d4e65fb8a855471ea37c5d70956a1a31e28f3999ad3d326",
+          "value": null
+        },
+        {
+          "call_id": "call-2",
+          "model_source": "scripted-learning",
+          "arguments_json": "{\"action\":\"EVALUATE\",\"evidence\":[\"learning-support:893a40b61a4a4dc66d4e65fb8a855471ea37c5d70956a1a31e28f3999ad3d326\"],\"family\":\"classification\",\"method\":\"square-margin\",\"metric\":\"classification.macro_f1:v2\",\"rationale\":\"Use the original acknowledged online observations under the selected finite profile.\",\"role\":\"online\",\"schema_identity\":\"909bc7b86486e39ccfff6f0a2c05ec76a88a8f61b9ffde4dd5b4693b9f96d6b9\",\"source_handle\":\"learning-source:45c89046e4f8b15f15142093c03c21920b44ee85b277098bf33741e8425df561\",\"state_identity\":\"39ad09a2ee2c7317771fddf65a30a6773acc48f79fd42ff1e967f1e6abdf1c25\",\"task_identity\":\"authored-classification\",\"unit_identity\":\"3165e2c084edfe5c4136c51b2e36e1a408c876f70dad3411ae84f17f130add18\"}",
+          "state_identity": "39ad09a2ee2c7317771fddf65a30a6773acc48f79fd42ff1e967f1e6abdf1c25",
+          "action": "EVALUATE",
+          "method": "square-margin",
+          "evidence_identity": "27ac94fed7b7a3f6654c2ae95fdb53a023126a33866fc029ff877d2daf051a05",
+          "value": 1.0
+        },
+        {
+          "call_id": "call-3",
+          "model_source": "scripted-learning",
+          "arguments_json": "{\"action\":\"STOP\",\"evidence\":[\"learning-support:893a40b61a4a4dc66d4e65fb8a855471ea37c5d70956a1a31e28f3999ad3d326\",\"27ac94fed7b7a3f6654c2ae95fdb53a023126a33866fc029ff877d2daf051a05\"],\"family\":\"classification\",\"method\":null,\"metric\":\"classification.macro_f1:v2\",\"rationale\":\"Use the original acknowledged online observations under the selected finite profile.\",\"role\":\"online\",\"schema_identity\":\"909bc7b86486e39ccfff6f0a2c05ec76a88a8f61b9ffde4dd5b4693b9f96d6b9\",\"source_handle\":\"learning-source:45c89046e4f8b15f15142093c03c21920b44ee85b277098bf33741e8425df561\",\"state_identity\":\"cbb6f5bb3bfef0fc185aa5777769b9dfc09bd4b14f917b69d3afb52d2c0e4dec\",\"task_identity\":\"authored-classification\",\"unit_identity\":\"3165e2c084edfe5c4136c51b2e36e1a408c876f70dad3411ae84f17f130add18\"}",
+          "state_identity": "cbb6f5bb3bfef0fc185aa5777769b9dfc09bd4b14f917b69d3afb52d2c0e4dec",
+          "action": "STOP",
+          "method": null,
+          "evidence_identity": "learning-terminal:cbb6f5bb3bfef0fc185aa5777769b9dfc09bd4b14f917b69d3afb52d2c0e4dec",
+          "value": null
+        }
+      ],
+      "parent_predictions": [
+        0,
+        1
+      ],
+      "method": "square-margin",
+      "metric": {
+        "value": 1.0
+      }
+    },
+    {
+      "family": "classification",
+      "terminal": "ABSTAIN",
+      "counts": {
+        "native_fits": 1,
+        "states": 1,
+        "preparations": 1,
+        "squares": 0,
+        "actions": 2,
+        "invocations": 1
+      },
+      "worker_receipts": [
+        {
+          "plan_identity": "87d82d6e24c62bc028715ac6c6a8d3068d77484f11ff94671c72647140d65780",
+          "executable": "C:\\Users\\recoveryadmin\\AppData\\Roaming\\uv\\python\\cpython-3.12.13-windows-x86_64-none\\python.exe",
+          "site_packages": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools-learning\\.local\\learning-reconciliation\\package\\extra\\Lib\\site-packages",
+          "exit_code": 0,
+          "seconds": 7.190314,
+          "stderr": ""
+        }
+      ],
+      "trace": [
+        {
+          "call_id": "call-1",
+          "model_source": "scripted-learning",
+          "arguments_json": "{\"action\":\"CHECK_SUPPORT\",\"evidence\":[],\"family\":\"classification\",\"method\":null,\"metric\":\"classification.macro_f1:v2\",\"rationale\":\"Use the original acknowledged online observations under the selected finite profile.\",\"role\":\"online\",\"schema_identity\":\"909bc7b86486e39ccfff6f0a2c05ec76a88a8f61b9ffde4dd5b4693b9f96d6b9\",\"source_handle\":\"learning-source:45c89046e4f8b15f15142093c03c21920b44ee85b277098bf33741e8425df561\",\"state_identity\":\"ec793339a65bb69e49042990ac8e739917b1a037657c8c1e9e23c0e9059da00d\",\"task_identity\":\"authored-classification\",\"unit_identity\":\"3165e2c084edfe5c4136c51b2e36e1a408c876f70dad3411ae84f17f130add18\"}",
+          "state_identity": "ec793339a65bb69e49042990ac8e739917b1a037657c8c1e9e23c0e9059da00d",
+          "action": "CHECK_SUPPORT",
+          "method": null,
+          "evidence_identity": "learning-support:893a40b61a4a4dc66d4e65fb8a855471ea37c5d70956a1a31e28f3999ad3d326",
+          "value": null
+        },
+        {
+          "call_id": "call-2",
+          "model_source": "scripted-learning",
+          "arguments_json": "{\"action\":\"EVALUATE\",\"evidence\":[\"learning-support:893a40b61a4a4dc66d4e65fb8a855471ea37c5d70956a1a31e28f3999ad3d326\"],\"family\":\"classification\",\"method\":\"knn7\",\"metric\":\"classification.macro_f1:v2\",\"rationale\":\"Use the original acknowledged online observations under the selected finite profile.\",\"role\":\"online\",\"schema_identity\":\"909bc7b86486e39ccfff6f0a2c05ec76a88a8f61b9ffde4dd5b4693b9f96d6b9\",\"source_handle\":\"learning-source:45c89046e4f8b15f15142093c03c21920b44ee85b277098bf33741e8425df561\",\"state_identity\":\"39ad09a2ee2c7317771fddf65a30a6773acc48f79fd42ff1e967f1e6abdf1c25\",\"task_identity\":\"authored-classification\",\"unit_identity\":\"3165e2c084edfe5c4136c51b2e36e1a408c876f70dad3411ae84f17f130add18\"}",
+          "state_identity": "39ad09a2ee2c7317771fddf65a30a6773acc48f79fd42ff1e967f1e6abdf1c25",
+          "action": "EVALUATE",
+          "method": "knn7",
+          "evidence_identity": "8ac920d14b3512583068da9d2eb62e6022739364045d676fec372eca2d38a8af",
+          "value": null
+        },
+        {
+          "call_id": "call-3",
+          "model_source": "scripted-learning",
+          "arguments_json": "{\"action\":\"ABSTAIN\",\"evidence\":[\"learning-support:893a40b61a4a4dc66d4e65fb8a855471ea37c5d70956a1a31e28f3999ad3d326\",\"8ac920d14b3512583068da9d2eb62e6022739364045d676fec372eca2d38a8af\"],\"family\":\"classification\",\"method\":null,\"metric\":\"classification.macro_f1:v2\",\"rationale\":\"Use the original acknowledged online observations under the selected finite profile.\",\"role\":\"online\",\"schema_identity\":\"909bc7b86486e39ccfff6f0a2c05ec76a88a8f61b9ffde4dd5b4693b9f96d6b9\",\"source_handle\":\"learning-source:45c89046e4f8b15f15142093c03c21920b44ee85b277098bf33741e8425df561\",\"state_identity\":\"1a7961efcc507933bf2c3f84cd3dab007de7110ab9fc35436c14756809d76d17\",\"task_identity\":\"authored-classification\",\"unit_identity\":\"3165e2c084edfe5c4136c51b2e36e1a408c876f70dad3411ae84f17f130add18\"}",
+          "state_identity": "1a7961efcc507933bf2c3f84cd3dab007de7110ab9fc35436c14756809d76d17",
+          "action": "ABSTAIN",
+          "method": null,
+          "evidence_identity": "learning-terminal:1a7961efcc507933bf2c3f84cd3dab007de7110ab9fc35436c14756809d76d17",
+          "value": null
+        }
+      ]
+    },
+    {
+      "family": "classification",
+      "terminal": "ABSTAIN",
+      "counts": {
+        "native_fits": 1,
+        "states": 1,
+        "preparations": 1,
+        "squares": 0,
+        "actions": 2,
+        "invocations": 1
+      },
+      "worker_receipts": [
+        {
+          "plan_identity": "51f6e7fd4f8e3380ef6d67d16d8ff7c664aa7e47d6e609c801a3f2fa7997d27c",
+          "executable": "C:\\Users\\recoveryadmin\\AppData\\Roaming\\uv\\python\\cpython-3.12.13-windows-x86_64-none\\python.exe",
+          "site_packages": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools-learning\\.local\\learning-reconciliation\\package\\extra\\Lib\\site-packages",
+          "exit_code": 0,
+          "seconds": 7.241549,
+          "stderr": ""
+        }
+      ],
+      "trace": [
+        {
+          "call_id": "call-1",
+          "model_source": "scripted-learning",
+          "arguments_json": "{\"action\":\"CHECK_SUPPORT\",\"evidence\":[],\"family\":\"classification\",\"method\":null,\"metric\":\"classification.macro_f1:v2\",\"rationale\":\"Use the original acknowledged online observations under the selected finite profile.\",\"role\":\"online\",\"schema_identity\":\"909bc7b86486e39ccfff6f0a2c05ec76a88a8f61b9ffde4dd5b4693b9f96d6b9\",\"source_handle\":\"learning-source:45c89046e4f8b15f15142093c03c21920b44ee85b277098bf33741e8425df561\",\"state_identity\":\"ec793339a65bb69e49042990ac8e739917b1a037657c8c1e9e23c0e9059da00d\",\"task_identity\":\"authored-classification\",\"unit_identity\":\"3165e2c084edfe5c4136c51b2e36e1a408c876f70dad3411ae84f17f130add18\"}",
+          "state_identity": "ec793339a65bb69e49042990ac8e739917b1a037657c8c1e9e23c0e9059da00d",
+          "action": "CHECK_SUPPORT",
+          "method": null,
+          "evidence_identity": "learning-support:1ff364490a2fe85d6ef545c65ce22f9ae7547e68e3dc701287fa2de0afef1b90",
+          "value": null
+        },
+        {
+          "call_id": "call-2",
+          "model_source": "scripted-learning",
+          "arguments_json": "{\"action\":\"EVALUATE\",\"evidence\":[\"learning-support:1ff364490a2fe85d6ef545c65ce22f9ae7547e68e3dc701287fa2de0afef1b90\"],\"family\":\"classification\",\"method\":\"knn7\",\"metric\":\"classification.macro_f1:v2\",\"rationale\":\"Use the original acknowledged online observations under the selected finite profile.\",\"role\":\"online\",\"schema_identity\":\"909bc7b86486e39ccfff6f0a2c05ec76a88a8f61b9ffde4dd5b4693b9f96d6b9\",\"source_handle\":\"learning-source:45c89046e4f8b15f15142093c03c21920b44ee85b277098bf33741e8425df561\",\"state_identity\":\"763dd5dacb8ef2445ab50173678d55b7135be37cdf34488a9fc08e37a18927ea\",\"task_identity\":\"authored-classification\",\"unit_identity\":\"3165e2c084edfe5c4136c51b2e36e1a408c876f70dad3411ae84f17f130add18\"}",
+          "state_identity": "763dd5dacb8ef2445ab50173678d55b7135be37cdf34488a9fc08e37a18927ea",
+          "action": "EVALUATE",
+          "method": "knn7",
+          "evidence_identity": "de9b2c9be1b9c12314b8e43fdbdfa93c5e72282c36551aa505da2211a0563a83",
+          "value": 1.0
+        },
+        {
+          "call_id": "call-3",
+          "model_source": "scripted-learning",
+          "arguments_json": "{\"action\":\"ABSTAIN\",\"evidence\":[\"learning-support:1ff364490a2fe85d6ef545c65ce22f9ae7547e68e3dc701287fa2de0afef1b90\",\"de9b2c9be1b9c12314b8e43fdbdfa93c5e72282c36551aa505da2211a0563a83\"],\"family\":\"classification\",\"method\":null,\"metric\":\"classification.macro_f1:v2\",\"rationale\":\"Use the original acknowledged online observations under the selected finite profile.\",\"role\":\"online\",\"schema_identity\":\"909bc7b86486e39ccfff6f0a2c05ec76a88a8f61b9ffde4dd5b4693b9f96d6b9\",\"source_handle\":\"learning-source:45c89046e4f8b15f15142093c03c21920b44ee85b277098bf33741e8425df561\",\"state_identity\":\"4088bad8b1484e1dffc3f7de042b52d0faec97716bfd2b49ffd08699b186ab5c\",\"task_identity\":\"authored-classification\",\"unit_identity\":\"3165e2c084edfe5c4136c51b2e36e1a408c876f70dad3411ae84f17f130add18\"}",
+          "state_identity": "4088bad8b1484e1dffc3f7de042b52d0faec97716bfd2b49ffd08699b186ab5c",
+          "action": "ABSTAIN",
+          "method": null,
+          "evidence_identity": "learning-terminal:4088bad8b1484e1dffc3f7de042b52d0faec97716bfd2b49ffd08699b186ab5c",
+          "value": null
+        }
+      ]
+    },
+    {
+      "case": "tied-boundary",
+      "terminal": "STOP",
+      "counts": {
+        "native_fits": 2,
+        "states": 2,
+        "preparations": 2,
+        "squares": 0,
+        "actions": 2,
+        "invocations": 2
+      },
+      "worker_receipts": [
+        {
+          "plan_identity": "fe1aae128f526c7de93c5493c9b205a1797814ca46e4b92865f7a03091e06888",
+          "executable": "C:\\Users\\recoveryadmin\\AppData\\Roaming\\uv\\python\\cpython-3.12.13-windows-x86_64-none\\python.exe",
+          "site_packages": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools-learning\\.local\\learning-reconciliation\\package\\extra\\Lib\\site-packages",
+          "exit_code": 0,
+          "seconds": 7.039757,
+          "stderr": ""
+        },
+        {
+          "plan_identity": "495732e86f8f358e33f71a84b5d6e93315f34490c62dcc76f596579cf8e6f296",
+          "executable": "C:\\Users\\recoveryadmin\\AppData\\Roaming\\uv\\python\\cpython-3.12.13-windows-x86_64-none\\python.exe",
+          "site_packages": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools-learning\\.local\\learning-reconciliation\\package\\extra\\Lib\\site-packages",
+          "exit_code": 0,
+          "seconds": 7.032848,
+          "stderr": ""
+        }
+      ],
+      "parent_predictions": [
+        7.0
+      ],
+      "native_correspondence": {
+        "contract": "native-regression-parity-v1",
+        "qualified_row_ids": [],
+        "unqualified_meaning": "Original native boundary choice is not v2 truth; full-corpus deterministic retained arithmetic is independently checked.",
+        "unqualified_row_ids": [
+          "final-tie"
+        ]
+      }
+    }
+  ],
+  "prefit_refusal": true
+}

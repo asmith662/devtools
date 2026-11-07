@@ -1,0 +1,24 @@
+import asyncio, json, sys
+from pathlib import Path
+from devtools.core.paths import resolve_path
+from devtools.core.time import Duration, Stopwatch
+from devtools.resources.commands import Command, CommandExecutor, CommandOutputPolicy
+
+root=Path.cwd(); area=root/'.local/learning-reconciliation'
+async def run():
+    results=[]
+    for name,args in [
+        ('ruff',['ruff','check','src','tests','apps','scripts','--exclude','tests/experiments','--output-format','json']),
+        ('format',['ruff','format','--check','src','tests','apps','scripts','--exclude','tests/experiments']),
+        ('mypy',['mypy']),
+        ('layout',['python','scripts/validate_layout.py']),
+    ]:
+        clock=Stopwatch()
+        result=await CommandExecutor(output_policy=CommandOutputPolicy(max_stdout_bytes=8<<20,max_stderr_bytes=1<<20)).execute(Command('uv').args('run',*args).cwd(resolve_path(root)).with_environment({'UV_CACHE_DIR':str(root/'.local/uv-cache'),'VIRTUAL_ENV':str(root/'.venv')}).with_timeout(Duration.minutes(15)))
+        (area/(name+'-stdout.log')).write_bytes(result.stdout)
+        (area/(name+'-stderr.log')).write_bytes(result.stderr)
+        row={'name':name,'argv':['uv','run',*args],'exit_code':result.exit_code,'seconds':clock.elapsed.total_seconds,'stdout_truncated':result.stdout_truncated,'stderr_truncated':result.stderr_truncated}
+        results.append(row);print(row,flush=True)
+    (area/'static.json').write_text(json.dumps(results,indent=2),encoding='utf-8')
+    assert all(r['exit_code']==0 and not r['stdout_truncated'] and not r['stderr_truncated'] for r in results)
+asyncio.run(run())

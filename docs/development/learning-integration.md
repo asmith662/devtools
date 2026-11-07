@@ -13,9 +13,10 @@ on `integration/learning-investigator`, based on main
 `7b3ced58` (corrected real-source evidence and the terminal failed gate), and
 `cfb4c575` (minimum source closure and default development dependency correction).
 
-**A and B are functional and this feature candidate is release-qualified.**
-The exact committed `009cca843ea5bef675e8f7fdf2e9b223e8fcc59e` protected run
-passes 5,235 tests with the original two opt-in skips and 100% of 19,308
+**A and B are functional and the combined-main review candidate is release-qualified.**
+The earlier feature-only protected run on commit
+`009cca843ea5bef675e8f7fdf2e9b223e8fcc59e` passes 5,235 tests with the original
+two opt-in skips and 100% of 19,308
 statements plus 5,242 branches. Maintained Ruff has zero diagnostics, all 922
 maintained Python files are formatted, strict mypy passes 767 modules, and
 layout/diff checks pass. The installed learning-extra and numerical-free base
@@ -30,8 +31,10 @@ The original 84.55% and subsequent 99.99% failed gates remain historical failure
 not reclassified passes. The earlier qualification snapshot and original
 scientific publications remain under
 [original qualification evidence](learning-qualification/assessment.json).
-This branch has not been merged; current-main reconciliation and combined-tree
-validation remain review prerequisites.
+Current main has now been merged **into this feature branch** and the combined
+protected gate passes. The feature has not been merged into main. See
+[final reconciliation](learning-main-reconciliation.md) for exact revisions, runtime
+interoperability and combined receipts; human integration review remains outstanding.
 
 The concurrent canonical checkout is never an edit, build, test or environment
 root for this assignment. LI remains read-only. External uniquely owned tiny
@@ -52,7 +55,8 @@ UTF-8, selected exports and canonical Timestamp adaptations are recorded.
 
 The [release repair assessment](learning-release-qualification.md) records the
 coverage diagnosis, authenticated worker instrumentation and narrowed dependency
-closure. This is a validated repair checkpoint, not a passing release gate.
+closure. The repair chronology preserves the originally incomplete checkpoint;
+the current reports record the later passing feature and combined gates.
 
 `devtools.learning` owns source/role/schema/target/unit contracts, training-only
 preparation, numerical states, F1/MAE observations, scientific grants, immutable

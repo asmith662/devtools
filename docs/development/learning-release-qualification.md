@@ -1,6 +1,9 @@
 # Learning release qualification
 
-**Current status: release-qualified feature candidate, not merged.**
+**Current status: combined-main review candidate, protected-qualified; not merged into main.**
+See [final main reconciliation](learning-main-reconciliation.md) for the current
+combined gate, package and Python 3.14 host interoperability receipts.
+The following feature-only result and repair chronology remain historical evidence.
 Protected candidate `009cca843ea5bef675e8f7fdf2e9b223e8fcc59e` passes 5,235 tests,
 two existing opt-in skips and exactly 100% of 19,308 statements and 5,242 branches.
 Ruff, formatting, strict typing, layout, base/extra wheel and source-independence
